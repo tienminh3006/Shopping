@@ -2,7 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Box } from "@mui/material";
 
-ProductThumbnail.propTypes = {};
+ProductThumbnail.propTypes = {
+  product: PropTypes.object,
+};
 
 function ProductThumbnail(props) {
   const { product } = props;

@@ -2,12 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Tab, Tabs } from "@mui/material";
 
-ProductSort.propTypes = {};
+ProductSort.propTypes = {
+  onchange: PropTypes.func,
+};
 
 function ProductSort({ onchange, currentSort }) {
   const handleSortChange = (event, newValue) => {
     if (onchange) onchange(newValue);
-    console.log(newValue); 
+    console.log(newValue);
   };
   return (
     <Tabs

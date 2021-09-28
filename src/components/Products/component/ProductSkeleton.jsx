@@ -2,7 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Box, Grid, Skeleton } from "@mui/material";
 
-ProductSkeleton.propTypes = {};
+ProductSkeleton.propTypes = {
+  length: PropTypes.number,
+};
 ProductSkeleton.defaultProps = {
   length: "6",
 };
