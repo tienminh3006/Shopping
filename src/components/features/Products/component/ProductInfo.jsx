@@ -33,7 +33,7 @@ function ProductInfo({ product = {} }) {
   const formatPrice = function (number) {
     return new Intl.NumberFormat("vi-VN", {
       style: "currency",
-      // currency: "VND",
+      currency: "VND",
     }).format(number);
   };
   const classes = useStyles();
