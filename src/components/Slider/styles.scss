@@ -1,0 +1,79 @@
+@mixin setHoverEffect {
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    // right: 0;
+    width: 100%;
+    bottom: -3px;
+    height: 2px;
+    background-color: #1a94ff;
+    transform: translateX(-110%);
+    opacity: 0;
+    transition: all 0.5s;
+    border-radius: 100%;
+  }
+  &:hover::before {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
+.slider {
+  padding: 10px 0 0;
+  &__row {
+    // flex-wrap: nowrap;
+    height: 30px;
+    display: inline-block;
+    white-space: nowrap;
+    transition: all 0.5s;
+    a {
+      margin: 0px 16px;
+      padding-bottom: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+  }
+  &__item {
+    text-decoration: none;
+    display: inline-block;
+    color: black;
+    position: relative;
+    @include setHoverEffect;
+    // &:hover {
+    // }
+  }
+  &__bar {
+    overflow: hidden;
+  }
+  &__container {
+    position: relative;
+  }
+  &__btn {
+    position: absolute;
+    border: none;
+    background-color: #1a94ff;
+    color: #fff;
+    border-radius: 1px;
+    font-size: 15px;
+    padding: 4px 8px;
+    z-index: 1;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  &__btn-left {
+    left: -8px;
+    top: 0;
+  }
+  &__btn-right {
+    right: 0;
+    top: 0;
+  }
+}
+.disable {
+  display: none;
+}
+.translate {
+  transform: translateX(-50%);
+}
