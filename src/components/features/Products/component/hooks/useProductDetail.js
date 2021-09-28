@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import productsApi from "../../../../api/productApi";
+import productsApi from "../../../../../api/productApi";
 
 export default function useProductDetail(productId) {
   const [product, setProduct] = useState({});
@@ -9,10 +9,10 @@ export default function useProductDetail(productId) {
       try {
         setLoading(true);
         const result = await productsApi.get(productId);
-        console.log(result);
+        // console.log(result);
         setProduct(result);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
       setLoading(false);
     })();

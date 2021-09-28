@@ -3,7 +3,7 @@ import { Button } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import QuantityField from "../../form-controls/QuantityField";
+import QuantityField from "../../../form-controls/QuantityField";
 
 AddtoCartForm.propTypes = {
   onSubmit: PropTypes.func,

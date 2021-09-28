@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     "& > span": {},
   },
+  btnSubmit: {
+    paddingTop: "20px",
+  },
 }));
 
 function FilterByPrice(props) {
@@ -38,24 +41,30 @@ function FilterByPrice(props) {
   };
   return (
     <Box className={classes.root}>
-      <Typography variant="subtitle2">Gia</Typography>
+      <Typography variant="subtitle2">Lọc theo giá</Typography>
       <Box>
         <TextField
           // value={values.salePrice_gte}
           onChange={handleChange}
           name="salePrice_gte"
-          label="Filled"
-          variant="filled"
+          label="Giá thấp nhất"
+          // variant="filled"
         />
-        <span>-</span>
+        {/* <span>-</span> */}
         <TextField
           name="salePrice_lte"
           // value={values.salePrice_lte}
           onChange={handleChange}
+          label="Giá cao nhất"
         />
       </Box>
-      <Button variant="outlined" onClick={handleSubmit} size="small">
-        Ap dung
+      <Button
+        className={classes.btnSubmit}
+        variant="outlined"
+        onClick={handleSubmit}
+        size="small"
+      >
+        Áp dụng
       </Button>
     </Box>
   );

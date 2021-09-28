@@ -1,14 +1,17 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
 import { Box, Typography } from "@mui/material";
-import { useEffect } from "react";
-import categoryApi from "../../../../api/categoryApi";
 import { makeStyles } from "@mui/styles";
+import React, { useEffect, useState } from "react";
+import categoryApi from "../../../../../api/categoryApi";
 
 FilterByCategory.propTypes = {};
 const useStyle = makeStyles((theme) => ({
+  root: {
+    marginTop: "20px",
+  },
   menu: {
+    listStyle: "none",
     "&> li": {
+      margin: "5px",
       "&:hover": {
         cursor: "pointer",
       },
@@ -42,8 +45,8 @@ function FilterByCategory({ onChange }) {
     }
   };
   return (
-    <Box>
-      <Typography>Danh muc san pham</Typography>
+    <Box className={classes.root}>
+      <Typography>Danh mục sản phẩm</Typography>
       <ul className={classes.menu}>
         {categoryList.map((category) => (
           <li key={category.id} onClick={() => handCategoryClick(category)}>

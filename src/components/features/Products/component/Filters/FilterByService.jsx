@@ -11,7 +11,9 @@ FilterByService.propTypes = {
   onChange: PropTypes.func,
 };
 const useStyles = makeStyles((theme) => ({
-  root: {},
+  root: {
+    padding: "20px",
+  },
   range: {
     display: "flex",
     flexFlow: "row nowrap",
@@ -30,13 +32,12 @@ function FilterByService(props) {
   };
   return (
     <Box className={classes.root}>
-      <Typography>Dich vu</Typography>
-
+      <Typography>Dịch vụ</Typography>
       <FormGroup>
         {/* <FormControlLabel control={<Checkbox defaultChecked />} label="Label" /> */}
         {[
-          { value: "isPromotion", label: "Khuyen mai" },
-          { value: "isFreeShip", label: "Van chuyen mien phi" },
+          { value: "isPromotion", label: "Khuyến mại" },
+          { value: "isFreeShip", label: "Vận chuyển miễn phí" },
         ].map((service) => (
           <FormControlLabel
             key={service.value}

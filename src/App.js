@@ -1,12 +1,13 @@
-import "./App.css";
-import Header from "./components/Header";
-import { Redirect, Route, Switch } from "react-router-dom";
-import NotFound from "./components/NotFound";
-import ProductFeature from "./components/Products";
-import CartFeature from "./components/features/Cart";
 import Box from "@material-ui/core/Box/Box";
+import { Redirect, Route, Switch } from "react-router-dom";
+import "./App.css";
+import CartFeature from "./components/features/Cart";
 import Footer from "./components/Footer";
-import Slider from "./components/Slider";
+import Header from "./components/Header";
+import NotFound from "./components/features/NotFound";
+import ProductFeature from "./components/features/Products";
+import SliderFeature from "./components/Slider";
+import DetailPage from "./components/features/Products/pages/DetailPage";
 
 function App() {
   return (
@@ -14,10 +15,11 @@ function App() {
       {/* <Box */}
       <Box>
         <Header />
-        <Slider />
+        <SliderFeature />
         <Switch>
           <Redirect from="/home" to="/" />
-          <Route path="/" component={ProductFeature} />
+          <Route path="/" component={ProductFeature} exact />
+          <Route path="/products" component={ProductFeature}></Route>
           {/* <Route path="/products" component={ProductFeature}></Route> */}
           <Route path="/cart" component={CartFeature}></Route>
           <Route component={NotFound} />

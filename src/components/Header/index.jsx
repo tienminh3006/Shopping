@@ -1,12 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
-import "./styles.scss";
-import MenuIcon from "@mui/icons-material/Menu";
-import {
-  cartItemsCountSelector,
-  cartTotaltSelector,
-} from "../features/Cart/selector";
 import { useDispatch, useSelector } from "react-redux";
+import { cartItemsCountSelector } from "../features/Cart/selector";
+import "./styles.scss";
 
 Header.propTypes = {};
 
@@ -29,7 +24,7 @@ function Header(props) {
       <div className={"grid wide"}>
         <div className={"header-with-search"}>
           <div className={"header__logo"}>
-            <a href={url}>
+            <a href={"/"}>
               <img
                 src="https://salt.tikicdn.com/ts/upload/ae/f5/15/2228f38cf84d1b8451bb49e2c4537081.png"
                 alt="logo"

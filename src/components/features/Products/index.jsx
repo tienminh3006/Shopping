@@ -9,19 +9,23 @@ import {
   useRouteMatch,
 } from "react-router-dom";
 import ListPage from "../Products/pages/Listpage";
+import NotFound from "../NotFound";
 import DetailPage from "./pages/DetailPage";
+import { Box } from "@mui/material";
 
 ProductFeature.propTypes = {};
 
 function ProductFeature(props) {
   const match = useRouteMatch();
+  // console.log(match.url);
   return (
-    <div>
+    <Box>
       <Switch>
         <Route path={match.url} component={ListPage} exact></Route>
-        <Route path={`${match.url}/:productId`} component={DetailPage}></Route>
+        <Route path={`${match.url}/:productId`} component={DetailPage} />
+        <Route component={NotFound} />
       </Switch>
-    </div>
+    </Box>
   );
 }
 

@@ -14,7 +14,7 @@ import ProductReviews from "../component/ProductReviews";
 import ProductDescription from "../component/ProductDescription";
 import LinearProgress from "@mui/material/LinearProgress";
 import { useDispatch } from "react-redux";
-import { addToCard } from "../../features/Cart/cartSlice";
+import { addToCard } from "../../Cart/cartSlice";
 
 DetailPage.propTypes = {};
 const useStyles = makeStyles((theme) => ({

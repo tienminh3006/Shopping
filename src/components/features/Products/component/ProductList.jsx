@@ -8,7 +8,7 @@ ProductList.propTypes = {};
 //   length: "6",
 // };
 function ProductList({ data }) {
-  console.log(data);
+  // console.log(data);
   return (
     <div>
       <Box>
