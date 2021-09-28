@@ -50,7 +50,7 @@ function FilterByPrice(props) {
           label="Giá thấp nhất"
           // variant="filled"
         />
-        {/* <span>-</span> */}
+        <span>-</span>
         <TextField
           name="salePrice_lte"
           // value={values.salePrice_lte}
