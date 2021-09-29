@@ -10,6 +10,7 @@ import { Box } from "@mui/material";
 import PropTypes from "prop-types";
 import { default as React, useState } from "react";
 import { Controller } from "react-hook-form";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 QuantityField.propTypes = {
   form: PropTypes.object.isRequired,
@@ -21,14 +22,7 @@ function QuantityField(props) {
   const { form, name, disable, label } = props;
   const { formState, setValue } = form;
   const hasError = formState.errors[name];
-  //   const { formState } = form;
-  //   const { errors } = formState;
-  //   console.log(form);
-  //   const hasError = formState.touched[name] && errors[name];
-  const [showPassword, setshowPassword] = useState(false);
-  const toggleShowPassword = () => {
-    setshowPassword((x) => !x);
-  };
+
   return (
     <FormControl
       error={!!hasError}
@@ -36,7 +30,6 @@ function QuantityField(props) {
       margin="normal"
       variant="outlined"
     >
-      <InputLabel htmlFor={name}>{label}</InputLabel>
       <Controller
         control={form.control}
         name={name}
@@ -69,7 +62,7 @@ function QuantityField(props) {
                 )
               }
             >
-              <AddAlarm />
+              <AddCircleIcon />
             </IconButton>
           </Box>
         )}

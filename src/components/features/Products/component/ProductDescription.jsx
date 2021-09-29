@@ -5,6 +5,6 @@ import DOMPurify from "dompurify";
 ProductDescription.prototypes = { product: PropTypes.object };
 function ProductDescription({ product = {} }) {
   const safeDesciption = DOMPurify.sanitize(product.description);
-  return <div dangerouslySetInnerHTML={{ __html: safeDesciption }} />;
+  return <span dangerouslySetInnerHTML={{ __html: safeDesciption }} />;
 }
 export default ProductDescription;

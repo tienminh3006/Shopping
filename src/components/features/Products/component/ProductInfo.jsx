@@ -6,24 +6,19 @@ import { makeStyles } from "@mui/styles";
 ProductInfo.propTypes = {};
 const useStyles = makeStyles((theme) => ({
   root: {
-    // paddingBottom: theme.spacing(2),
-    // borderBottom: `1px solid ${theme.palette.grey[200]}`,
+    margin: "30px 0 0 30px",
   },
   description: {
-    // margin: theme.spacing(2, 0),
+    margin: "30px",
   },
   originalPrice: {
-    // marginRight: theme.spacing(2),
     textDecoration: "line-through",
   },
   promotionPercent: {},
-  priceBox: {
-    // padding: theme.spacing(2),
-    // backgroundColor: theme.palette.grey[200],
-  },
+  priceBox: {},
   salePrice: {
-    // fontSize: theme.typography.h3.fontSize,
-    // marginRight: theme.spacing(3),
+    marginTop: "5px",
+    fontSize: "20px",
     fontWeight: "bold",
   },
 }));
@@ -39,8 +34,8 @@ function ProductInfo({ product = {} }) {
   const classes = useStyles();
 
   return (
-    <Box>
-      <Typography component="h1" variant="h4">
+    <Box className={classes.root}>
+      <Typography component="h2" variant="h5">
         {name}
       </Typography>
       <Typography variant="body2" className={classes.description}>

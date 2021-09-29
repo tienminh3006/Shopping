@@ -18,7 +18,9 @@ import { addToCard } from "../../Cart/cartSlice";
 
 DetailPage.propTypes = {};
 const useStyles = makeStyles((theme) => ({
-  root: {},
+  root: {
+    backgroundColor: "#f4f4f4",
+  },
   left: {
     width: "400px",
     //   padding: theme.spacing(1.5),
@@ -31,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
 
 function DetailPage(props) {
   const dispatch = useDispatch();
+
   const classes = useStyles();
   const {
     url,
@@ -51,8 +54,8 @@ function DetailPage(props) {
       product,
       quantity: formValue.quantity,
     });
-    console.log(action);
-    console.log(formValue);
+    // console.log(action);
+    // console.log(formValue);
     dispatch(action);
   };
   return (
@@ -61,7 +64,6 @@ function DetailPage(props) {
         <Paper elevation={0}>
           <Grid container>
             <Grid item className={classes.left}>
-              Left
               <ProductThumbnail product={product}></ProductThumbnail>
             </Grid>
             <Grid item className={classes.right}>
@@ -70,11 +72,8 @@ function DetailPage(props) {
             </Grid>
           </Grid>
         </Paper>
-        <ProductMenu />
+        <ProductMenu product={product} />
         <Switch>
-          <Route path={url} exact>
-            <ProductDescription product={product}></ProductDescription>
-          </Route>
           <Route
             path={`${url}/additional`}
             component={ProductAdditional}

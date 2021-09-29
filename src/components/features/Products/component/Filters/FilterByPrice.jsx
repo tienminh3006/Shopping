@@ -14,10 +14,6 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexFlow: "column nowrap",
     alignItems: "center",
-    "& > span": {},
-  },
-  btnSubmit: {
-    paddingTop: "20px",
   },
 }));
 
@@ -42,13 +38,14 @@ function FilterByPrice(props) {
   return (
     <Box className={classes.root}>
       <Typography variant="subtitle2">Lọc theo giá</Typography>
-      <Box>
+      <Box className={classes.range}>
         <TextField
           // value={values.salePrice_gte}
           onChange={handleChange}
           name="salePrice_gte"
           label="Giá thấp nhất"
           // variant="filled"
+          style={{ fontSize: "14px" }}
         />
         {/* <span>-</span> */}
         <TextField
@@ -56,9 +53,11 @@ function FilterByPrice(props) {
           // value={values.salePrice_lte}
           onChange={handleChange}
           label="Giá cao nhất"
+          style={{ fontSize: "14px" }}
         />
       </Box>
       <Button
+        style={{ marginTop: "20px" }}
         className={classes.btnSubmit}
         variant="outlined"
         onClick={handleSubmit}

@@ -9,7 +9,7 @@ function SliderFeature(props) {
   return (
     <>
       <Slider />
-      <Banner />
+      {/* <Banner /> */}
     </>
   );
 }
