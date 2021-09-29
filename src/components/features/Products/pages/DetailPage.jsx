@@ -11,7 +11,6 @@ import AddtoCartForm from "../component/AddtoCartForm";
 import ProductMenu from "../component/ProductMenu";
 import ProductAdditional from "../component/ProductAdditional";
 import ProductReviews from "../component/ProductReviews";
-import ProductDescription from "../component/ProductDescription";
 import LinearProgress from "@mui/material/LinearProgress";
 import { useDispatch } from "react-redux";
 import { addToCard } from "../../Cart/cartSlice";

@@ -44,7 +44,7 @@ function AddtoCartForm({ onSubmit = null }) {
         >
           {"Số lượng"}
         </InputLabel>
-        <QuantityField name="Số lượng" label="Số lượng" form={form} />
+        <QuantityField name="quantity" label="quantity" form={form} />
         <Button
           style={{ width: "250px", marginLeft: "24px" }}
           type="submit"
