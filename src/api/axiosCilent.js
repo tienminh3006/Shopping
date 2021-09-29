@@ -1,16 +1,14 @@
 import axios from "axios";
 
-const axiosCilent = axios.create({
-  baseURL: "https://api.ezfrontend.com/",
+const axiosClient = axios.create({
+  baseURL: "http://api.ezfrontend.com/",
   headers: {
     "Content-Type": "application/json",
   },
 });
-export default axiosCilent;
 
-//Interceptors;
 // Add a request interceptor
-axiosCilent.interceptors.request.use(
+axiosClient.interceptors.request.use(
   function (config) {
     // Do something before request is sent
     return config;
@@ -22,7 +20,7 @@ axiosCilent.interceptors.request.use(
 );
 
 // Add a response interceptor
-axiosCilent.interceptors.response.use(
+axiosClient.interceptors.response.use(
   function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
@@ -31,7 +29,6 @@ axiosCilent.interceptors.response.use(
   function (error) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
-    console.log("Error:", error.response);
     const { config, status, data } = error.response;
     const URLS = ["/auth/local/register", "/auth/local"];
     if (URLS.includes(config.url) && status === 400) {
@@ -44,3 +41,4 @@ axiosCilent.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+export default axiosClient;

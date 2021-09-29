@@ -18,9 +18,9 @@ function AddtoCartForm({ onSubmit = null }) {
   const schema = yup.object().shape({
     quantity: yup
       .number()
-      .min(1, "AddtoCartForm")
-      .required("AddtoCartForm")
-      .typeError("Nhap 1 so"),
+      .min(1, "Số lượng phải lớn hơn 1")
+      .required("Vui lòng nhập số lượng")
+      .typeError("Vui lòng nhập số lượng"),
   });
   const form = useForm({
     defaultValues: {

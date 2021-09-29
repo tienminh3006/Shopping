@@ -5,22 +5,28 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  Typography,
 } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import LoginForm from "../features/Authenticate/components/LoginForm";
+import Login from "../features/Authenticate/components/Login";
 import Register from "../features/Authenticate/components/Register";
 import { login, register } from "../features/Authenticate/userSlice";
 import { cartItemsCountSelector } from "../features/Cart/selector";
+
+import CloseIcon from "@mui/icons-material/Close";
 import "./styles.scss";
 
 Header.propTypes = {};
-
+const useStyles = makeStyles(() => ({
+  root: {},
+}));
 function Header(props) {
-  // const loginCurrent = useSelector((state) => state.user.current);
-  // const isLogin = !!loginCurrent.id;
-  // const [open, setOpen] = React.useState(false);
-  // const [mode, setMode] = React.useState("login");
+  const classes = useStyles();
+  const loginCurrent = useSelector((state) => state.user.current);
+  const isLogin = !!loginCurrent.id;
+
   const cartItemCount = useSelector(cartItemsCountSelector);
   const [open, setOpen] = React.useState(false);
   const [mode, setMode] = React.useState("login");
@@ -33,11 +39,7 @@ function Header(props) {
     setOpen(false);
   };
   const dispatch = useDispatch();
-  // const handleLogout = function () {
-  //   const action = logout();
-  //   dispatch(action);
-  // };
-  let url = "#";
+
   return (
     <Box>
       <div className={"header"}>
@@ -309,7 +311,6 @@ function Header(props) {
         </div>
       </div>
       <Dialog open={open}>
-        <DialogTitle>Xin chào</DialogTitle>
         <DialogContent>
           {mode === "register" && (
             <>
@@ -321,15 +322,17 @@ function Header(props) {
           )}
           {mode === "login" && (
             <>
-              <LoginForm closeDialog={handleClose} />
-              <Box>
-                <Button onClick={() => setMode("register")}>Dang nhap</Button>
-              </Box>
+              <Login
+                closeDialog={handleClose}
+                onClick={() => setMode("register")}
+              />
             </>
           )}
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
+          <button onClick={handleClose}>
+            <CloseIcon />
+          </button>
         </DialogActions>
       </Dialog>
     </Box>
