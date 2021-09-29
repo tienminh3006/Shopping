@@ -32,7 +32,7 @@ function FilterByService(props) {
   };
   return (
     <Box className={classes.root}>
-      <Typography>Dịch vụ</Typography>
+      <Typography variant="subtitle2">Dịch vụ</Typography>
       <FormGroup>
         {/* <FormControlLabel control={<Checkbox defaultChecked />} label="Label" /> */}
         {[

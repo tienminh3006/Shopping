@@ -3,7 +3,6 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import PropTypes from "prop-types";
 import { useForm, Controller } from "react-hook-form";
-import { ErrorMessage } from "@hookform/error-message";
 
 InputFields.protoTypes = {
   form: PropTypes.object.isRequired,
@@ -44,9 +43,6 @@ export default function InputFields(props) {
           name={name}
           label={label}
           disable={disable}
-          //   id="filled-error-helper-text"
-          //   error={!!hasError}
-          //   helperText={errors[name]?.message}
           error={!!hasError}
           helperText={formState.errors[name]?.message}
         ></TextField>

@@ -52,6 +52,7 @@ function Listpage(props) {
     root: {},
     left: {
       width: "250px",
+      textAlign: "center",
     },
     right: {
       flex: "1 1 0",
@@ -132,7 +133,7 @@ function Listpage(props) {
   //   });
   // }, [filter]);
   return (
-    <Box>
+    <Box style={{ backgroundColor: "#f4f4f4" }}>
       <Container>
         <Grid container spacing={1}>
           <Grid className={classes.left}>

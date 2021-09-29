@@ -7,7 +7,6 @@ import * as yup from "yup";
 import {
   Avatar,
   Button,
-  makeStyles,
   Typography,
   LinearProgress,
 } from "@material-ui/core";
