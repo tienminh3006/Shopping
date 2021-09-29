@@ -10,11 +10,11 @@ FilterByPrice.propTypes = {
 
 const useStyles = makeStyles((theme) => ({
   root: {},
-  range: {
-    display: "flex",
-    flexFlow: "column nowrap",
-    alignItems: "center",
-  },
+  // range: {
+  //   display: "flex",
+  //   flexFlow: "column nowrap",
+  //   alignItems: "center",
+  // },
 }));
 
 function FilterByPrice(props) {
@@ -38,7 +38,7 @@ function FilterByPrice(props) {
   return (
     <Box className={classes.root}>
       <Typography variant="subtitle2">Lọc theo giá</Typography>
-      <Box className={classes.range}>
+      <Box style={{}}>
         <TextField
           // value={values.salePrice_gte}
           onChange={handleChange}
