@@ -13,8 +13,14 @@ import PasswordField from "../../../../form-controls/PasswordField";
 const schema = yup
   .object()
   .shape({
-    email: yup.string().required("nhap vao").email("nhap email"),
-    password: yup.string().required("please").min(5, "it nhat so ky tu"),
+    email: yup
+      .string()
+      .required("Vui lòng nhập địa chỉ email của ban")
+      .email("Vui lòng nhập địa chỉ email của ban"),
+    password: yup
+      .string()
+      .required("Vui lòng nhập mật khẩu của ban")
+      .min(5, "Mật khẩu phải có ít nhất 6 ký tự"),
   })
   .required();
 LoginFormEmail.propTypes = {
