@@ -337,3 +337,40 @@
 .header__menu:hover .header__menu__list {
   display: block;
 }
+.dialog {
+  box-shadow: -6px 6px 5px rgba(0, 0, 0, 0.356);
+  position: fixed;
+  width: 800px;
+  height: 510px;
+  background-color: #fff;
+  z-index: 6;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 40px;
+  &__btn-close {
+    img {
+      position: absolute;
+      right: -8px;
+      top: -8px;
+      width: 42px;
+      height: 42px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+  }
+}
+.overlay {
+  content: "";
+  position: absolute;
+  width: 100vh;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.219);
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+.hidden {
+  display: none;
+}

@@ -34,6 +34,7 @@ export default function InputFields(props) {
       control={form.control}
       render={({ field: { onChange, onBlur, value, name, ref } }) => (
         <TextField
+          fullWidth
           value={value}
           onChange={onChange}
           inputRef={ref} // wire up the input ref

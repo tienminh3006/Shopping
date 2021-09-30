@@ -7,7 +7,6 @@ import Header from "./components/Header";
 import NotFound from "./components/features/NotFound";
 import ProductFeature from "./components/features/Products";
 import SliderFeature from "./components/Slider";
-import DetailPage from "./components/features/Products/pages/DetailPage";
 
 function App() {
   return (

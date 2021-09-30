@@ -146,7 +146,7 @@ function NotFound(props) {
       <p className="not__found__title">
         Trang bạn đang tìm kiếm không tồn tại!
       </p>
-      <a className="not__found__link" href="tiki.vn">
+      <a className="not__found__link" href="/">
         Tiếp tục mua sắm
       </a>
     </div>

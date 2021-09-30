@@ -3,11 +3,11 @@ import { useSnackbar } from "notistack";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { login } from "../../userSlice";
-import LoginForm from "../LoginForm/index.jsx";
+import FormPhone from "../FormPhone";
 
-Login.propTypes = {};
+LoginPhone.propTypes = {};
 
-function Login(props) {
+function LoginPhone(props) {
   const { closeDialog, onClick } = props;
 
   const dispatch = useDispatch();
@@ -33,9 +33,9 @@ function Login(props) {
   };
   return (
     <div>
-      <LoginForm onSubmit={onHandle} onClick={onClick} />
+      <FormPhone onSubmit={onHandle} onClick={onClick} />
     </div>
   );
 }
 
-export default Login;
+export default LoginPhone;

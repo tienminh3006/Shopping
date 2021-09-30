@@ -3,23 +3,13 @@ import PropTypes from "prop-types";
 import { Box, Button, TextField } from "@material-ui/core";
 import { Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-
+import "./styles.scss";
 FilterByPrice.propTypes = {
   onChange: PropTypes.func,
 };
 
-const useStyles = makeStyles((theme) => ({
-  root: {},
-  // range: {
-  //   display: "flex",
-  //   flexFlow: "column nowrap",
-  //   alignItems: "center",
-  // },
-}));
-
 function FilterByPrice(props) {
   const { onChange } = props;
-  const classes = useStyles();
   const [values, setValues] = useState({
     salePrice_gte: 0,
     salePrice_lte: 0,
@@ -36,9 +26,10 @@ function FilterByPrice(props) {
     }
   };
   return (
-    <Box className={classes.root}>
+    <div className={"filer-by-price"}>
       <Typography variant="subtitle2">Lọc theo giá</Typography>
-      <Box style={{}}>
+
+      <div className="filer-by-price__input">
         <TextField
           // value={values.salePrice_gte}
           onChange={handleChange}
@@ -47,7 +38,9 @@ function FilterByPrice(props) {
           // variant="filled"
           style={{ fontSize: "14px" }}
         />
-        {/* <span>-</span> */}
+      </div>
+      {/* <span>-</span> */}
+      <div className="filer-by-price__input">
         <TextField
           name="salePrice_lte"
           // value={values.salePrice_lte}
@@ -55,17 +48,12 @@ function FilterByPrice(props) {
           label="Giá cao nhất"
           style={{ fontSize: "14px" }}
         />
-      </Box>
-      <Button
-        style={{ marginTop: "20px" }}
-        className={classes.btnSubmit}
-        variant="outlined"
-        onClick={handleSubmit}
-        size="small"
-      >
+      </div>
+
+      <button className="filer-by-price__btn" onClick={handleSubmit}>
         Áp dụng
-      </Button>
-    </Box>
+      </button>
+    </div>
   );
 }
 

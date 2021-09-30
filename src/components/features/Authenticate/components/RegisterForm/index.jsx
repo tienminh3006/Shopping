@@ -1,16 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
-import InputFields from "../../../../form-controls/inputField";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import {
   Avatar,
   Button,
+  makeStyles,
   Typography,
   LinearProgress,
 } from "@material-ui/core";
 import { LockOutlined } from "@material-ui/icons";
+import InputFields from "../../../../form-controls/inputField";
 import PasswordField from "../../../../form-controls/PasswordField";
 
 const schema = yup

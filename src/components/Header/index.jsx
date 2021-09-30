@@ -1,26 +1,20 @@
-import {
-  Box,
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  Typography,
-} from "@mui/material";
+import { Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import classNames from "classnames";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Login from "../features/Authenticate/components/Login";
-import Register from "../features/Authenticate/components/Register";
-import { login, register } from "../features/Authenticate/userSlice";
-import { cartItemsCountSelector } from "../features/Cart/selector";
+import LoginEmail from "../features/Authenticate/components/Login Email";
 
-import CloseIcon from "@mui/icons-material/Close";
+import LoginPhone from "../features/Authenticate/components/LoginFormPhone";
+import { cartItemsCountSelector } from "../features/Cart/selector";
 import "./styles.scss";
 
 Header.propTypes = {};
 const useStyles = makeStyles(() => ({
-  root: {},
+  root: { minWidth: "600px", overflow: "hidden" },
+  dialog: {
+    width: "600px",
+  },
 }));
 function Header(props) {
   const classes = useStyles();
@@ -28,18 +22,22 @@ function Header(props) {
   const isLogin = !!loginCurrent.id;
 
   const cartItemCount = useSelector(cartItemsCountSelector);
-  const [open, setOpen] = React.useState(false);
-  const [mode, setMode] = React.useState("login");
-  console.log(cartItemCount);
+  const [hidden, setHidden] = React.useState(true);
+  const [mode, setMode] = React.useState("loginemail");
+  // console.log(cartItemCount);
+
+  // const dialog = document.querySelector(".dialog");
+  // console.log(dialog);
   const handleClickOpen = () => {
-    setOpen(true);
+    // dialog.classList.remove("hidden");
+    setHidden(false);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    // dialog.classList.add("hidden");
+    setHidden(true);
   };
   const dispatch = useDispatch();
-
   return (
     <Box>
       <div className={"header"}>
@@ -310,8 +308,8 @@ function Header(props) {
           </div>
         </div>
       </div>
-      <Dialog open={open}>
-        <DialogContent>
+      {/* <Dialog open={open} className={classes.root}>
+        <>
           {mode === "register" && (
             <>
               <Register closeDialog={handleClose} />
@@ -328,13 +326,40 @@ function Header(props) {
               />
             </>
           )}
-        </DialogContent>
+        </>
         <DialogActions>
           <button onClick={handleClose}>
             <CloseIcon />
           </button>
         </DialogActions>
-      </Dialog>
+      </Dialog> */}
+      {/* <Dialog open={open}> */}
+      <div className={classNames("dialog", { hidden: hidden === true })}>
+        {mode === "loginnumber" && (
+          <>
+            <LoginEmail
+              closeDialog={handleClose}
+              onClick={() => setMode("loginemail")}
+            />
+          </>
+        )}
+        {mode === "loginemail" && (
+          <>
+            <LoginPhone
+              closeDialog={handleClose}
+              onClick={() => setMode("loginnumber")}
+            />
+          </>
+        )}
+        <button className="dialog__btn-close" onClick={handleClose}>
+          <img
+            src="https://salt.tikicdn.com/ts/upload/fe/20/d7/6d7764292a847adcffa7251141eb4730.png"
+            alt="close"
+          />
+        </button>
+      </div>
+      {/* </Dialog> */}
+      {/* <div className="overlay"></div> */}
     </Box>
   );
 }

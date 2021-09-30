@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import RegisterForm from "../RegisterForm";
 import { useDispatch } from "react-redux";
 import { register } from "../../userSlice";
 import { unwrapResult } from "@reduxjs/toolkit";
 import { useSnackbar } from "notistack";
+import RegisterForm from "../RegisterForm";
 
 // import { showToast } from "some-toast-library";
 
