@@ -1,41 +1,39 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
-import { register } from "../../userSlice";
 import { unwrapResult } from "@reduxjs/toolkit";
 import { useSnackbar } from "notistack";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { login } from "../../userSlice";
 import RegisterForm from "../RegisterForm";
-
-// import { showToast } from "some-toast-library";
 
 Register.propTypes = {};
 
 function Register(props) {
+  const { closeDialog, onClick } = props;
+
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
 
-  const onHandleSubmit = async (value) => {
-    const { closeDialog } = props;
+  const onHandle = async (value) => {
+    console.log(value);
     try {
       //set username = email
-      value.username = value.email;
-      const action = register(value);
+      const action = login(value);
       const resultAction = await dispatch(action);
       unwrapResult(resultAction);
-      console.log("success", `Fetched ${resultAction}`);
       if (closeDialog) {
         closeDialog();
       }
-      console.log(enqueueSnackbar);
       enqueueSnackbar("I love hooks", { variant: "success" });
     } catch (err) {
-      console.log(err);
-      enqueueSnackbar(err.message, { variant: "error" });
+      enqueueSnackbar(
+        "Sản phẩm đang trong quá trình phát triển, vui lòng quay lại sau",
+        { variant: "error" }
+      );
     }
   };
   return (
     <div>
-      <RegisterForm onSubmit={onHandleSubmit}></RegisterForm>
+      <RegisterForm onSubmit={onHandle} onClick={onClick} />
     </div>
   );
 }

@@ -96,7 +96,9 @@ export default function FormPhone(props) {
           </div>
           <p>
             Bằng việc tiếp tục, bạn đã chấp nhận{" "}
-            <a href="_blank">điều khoản sử dụng</a>
+            <a href="_blank" className="login-form__options__link">
+              điều khoản sử dụng
+            </a>
           </p>
         </div>
       </div>

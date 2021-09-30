@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import LoginEmail from "../features/Authenticate/components/Login Email";
 
 import LoginPhone from "../features/Authenticate/components/LoginFormPhone";
+import Register from "../features/Authenticate/components/Register";
 import { cartItemsCountSelector } from "../features/Cart/selector";
 import "./styles.scss";
 
@@ -26,16 +27,16 @@ function Header(props) {
   const [mode, setMode] = React.useState("loginemail");
   // console.log(cartItemCount);
 
-  // const dialog = document.querySelector(".dialog");
-  // console.log(dialog);
   const handleClickOpen = () => {
-    // dialog.classList.remove("hidden");
     setHidden(false);
   };
 
   const handleClose = () => {
-    // dialog.classList.add("hidden");
     setHidden(true);
+  };
+  const handleClickRegister = () => {
+    setHidden(false);
+    setMode("register");
   };
   const dispatch = useDispatch();
   return (
@@ -240,7 +241,7 @@ function Header(props) {
                   Đăng nhập
                 </button>
                 <button
-                  onClick={handleClickOpen}
+                  onClick={handleClickRegister}
                   className={"header__account__btn"}
                 >
                   Tạo tài khoản
@@ -340,12 +341,21 @@ function Header(props) {
             <LoginEmail
               closeDialog={handleClose}
               onClick={() => setMode("loginemail")}
+              onClickRegiter={handleClickRegister}
             />
           </>
         )}
         {mode === "loginemail" && (
           <>
             <LoginPhone
+              closeDialog={handleClose}
+              onClick={() => setMode("loginnumber")}
+            />
+          </>
+        )}
+        {mode === "register" && (
+          <>
+            <Register
               closeDialog={handleClose}
               onClick={() => setMode("loginnumber")}
             />

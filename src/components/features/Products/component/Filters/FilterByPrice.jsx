@@ -37,11 +37,13 @@ function FilterByPrice(props) {
           label="Giá thấp nhất"
           // variant="filled"
           style={{ fontSize: "14px" }}
+          type="number"
         />
       </div>
       {/* <span>-</span> */}
       <div className="filer-by-price__input">
         <TextField
+          type="number"
           name="salePrice_lte"
           // value={values.salePrice_lte}
           onChange={handleChange}

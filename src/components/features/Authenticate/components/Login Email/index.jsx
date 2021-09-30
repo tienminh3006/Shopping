@@ -8,7 +8,7 @@ import LoginFormEmail from "../FormEmail";
 LoginEmail.propTypes = {};
 
 function LoginEmail(props) {
-  const { closeDialog, onClick } = props;
+  const { closeDialog, onClick, onClickRegiter } = props;
 
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
@@ -33,7 +33,11 @@ function LoginEmail(props) {
   };
   return (
     <div>
-      <LoginFormEmail onSubmit={onHandle} onClick={onClick} />
+      <LoginFormEmail
+        onSubmit={onHandle}
+        onClick={onClick}
+        onClickRegiter={onClickRegiter}
+      />
     </div>
   );
 }

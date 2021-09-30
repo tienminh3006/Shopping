@@ -3,82 +3,114 @@ import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import {
-  Avatar,
-  Button,
-  makeStyles,
-  Typography,
-  LinearProgress,
-} from "@material-ui/core";
-import { LockOutlined } from "@material-ui/icons";
+import { Typography, LinearProgress } from "@material-ui/core";
+import { Box, DialogTitle } from "@mui/material";
+import "./styles.scss";
+import { makeStyles } from "@mui/styles";
 import InputFields from "../../../../form-controls/inputField";
-import PasswordField from "../../../../form-controls/PasswordField";
 
+const phoneRegExp =
+  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const schema = yup
   .object()
   .shape({
-    //
-    fullName: yup
+    phonenumber: yup
       .string()
-      .required("Nhap ten vao day")
-      .test("string 1", "string 2", (values) => {
-        return values.split(" ").length >= 2;
-      }),
-    email: yup.string().required("nhap vao").email("nhap email"),
-    password: yup.string().required("please").min(5, "it nhat so ky tu"),
-    repassword: yup
-      .string()
-      .required("nhap lai pass")
-      .oneOf([yup.ref("password")]),
+      .min(9, "Số điện thoại không đúng định dạng")
+      .matches(phoneRegExp, "Số điện thoại không đúng định dạng"),
   })
   .required();
 RegisterForm.propTypes = {
   onSubmit: PropTypes.func,
 };
-
-function RegisterForm(props) {
+const useStyles = makeStyles(() => ({
+  root: {},
+  input: {
+    border: "none",
+    width: "410px",
+    fontSize: "18px",
+  },
+}));
+export default function RegisterForm(props) {
+  const classes = useStyles();
+  const { onSubmit, onClick } = props;
   const form = useForm({
     // criteriaMode: "all",
     resolver: yupResolver(schema),
     defaultValues: {
-      title: "",
-      fullName: "",
-      email: "",
-      password: "",
-      repassword: "",
+      phonenumber: "",
     },
   });
   const xulySubmit = async (value) => {
-    const { onSubmit } = props;
     await onSubmit(value);
-    console.log("Xu ly todoForm" + value);
+    console.log(onSubmit, onClick);
+
+    // console.log(value);
     // form.reset();
   };
   const { isSubmitting } = form.formState;
   return (
-    <div>
+    <Box className="login-form">
       {isSubmitting && <LinearProgress />}
-      <Avatar>
-        <LockOutlined></LockOutlined>
-      </Avatar>
-      <Typography component="h3">Create An Acount</Typography>
-      <form onSubmit={form.handleSubmit(xulySubmit)}>
-        <InputFields name="fullName" label="full Name" form={form} />
-        <InputFields name="email" label="email" form={form} />
-        <PasswordField name="password" label="password" form={form} />
-        <PasswordField name="repassword" label="repassword" form={form} />
-        <Button
-          type="submit"
-          //   disable={isSubmitting}
-          fullWidth
-          variant="contained"
-          color="primary"
-        >
-          Create an Account
-        </Button>
-      </form>
-    </div>
+      <div className="login-form__left">
+        <DialogTitle>Tạo tài khoản</DialogTitle>
+        <Typography>Vui lòng nhập số điện thoại</Typography>
+        <form onSubmit={form.handleSubmit(xulySubmit)}>
+          <div className={classes.input}>
+            <InputFields
+              fullWidth
+              name="phonenumber"
+              label="Số điện thoại"
+              form={form}
+            />
+          </div>
+          <button className="login-form__btn">Tiếp Tục</button>
+          <button className="login-form__toggle" onClick={onClick}>
+            Đăng nhập bằng email
+          </button>
+        </form>
+        <div className="login-form__options">
+          <p>Hoặc tiếp tục bằng</p>
+          <div>
+            <a href="_blank">
+              <img
+                className="login-form__left__img"
+                src="https://salt.tikicdn.com/ts/upload/3a/22/45/0f04dc6e4ed55fa62dcb305fd337db6c.png"
+                alt="facebook"
+              />
+            </a>
+            <a href="_blank">
+              <img
+                className="login-form__left__img"
+                src="https://salt.tikicdn.com/ts/upload/1c/ac/e8/141c68302262747f5988df2aae7eb161.png"
+                alt="Google"
+              />
+            </a>
+            <a href="_blank">
+              <img
+                className="login-form__left__img"
+                src="https://salt.tikicdn.com/ts/upload/98/37/86/517cfc05f04466b3118357a1fb4182c8.png"
+                alt="Zalo"
+              />
+            </a>
+          </div>
+          <p>
+            Bằng việc tiếp tục, bạn đã chấp nhận{" "}
+            <a href="_blank">điều khoản sử dụng</a>
+          </p>
+        </div>
+      </div>
+      <div className="login-form__right">
+        <img
+          className="login-form__right__img"
+          src="https://salt.tikicdn.com/ts/upload/eb/f3/a3/25b2ccba8f33a5157f161b6a50f64a60.png"
+          alt="pic"
+        />
+        <div className="login-form__right__content">
+          <h4>Mua sắm tại Tiki</h4>
+          <span>Siêu ưu đãi mỗi ngày</span>
+        </div>
+      </div>
+    </Box>
   );
 }
-
-export default RegisterForm;

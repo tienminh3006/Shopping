@@ -30,7 +30,7 @@ const useStyles = makeStyles(() => ({
 }));
 export default function LoginFormEmail(props) {
   const classes = useStyles();
-  const { onSubmit, onClick } = props;
+  const { onSubmit, onClick, onClickRegiter } = props;
   console.log(onSubmit, onClick);
   const form = useForm({
     // criteriaMode: "all",
@@ -69,9 +69,12 @@ export default function LoginFormEmail(props) {
           </a>
           <div>
             <span>Chưa có tài khoản</span>{" "}
-            <a className="login-form__options__link" href="/">
+            <button
+              className="login-form__options__register"
+              onClick={onClickRegiter}
+            >
               Tạo tài khoản
-            </a>
+            </button>
           </div>
         </div>
       </div>

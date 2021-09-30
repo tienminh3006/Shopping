@@ -3,3 +3,12 @@
   text-decoration: none;
   color: #0b74e5;
 }
+.login-form__options__register {
+  border: none;
+  background-color: transparent;
+  color: #0b74e5;
+  font-size: 16px;
+  &:hover {
+    cursor: pointer;
+  }
+}
