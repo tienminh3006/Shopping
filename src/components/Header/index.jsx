@@ -3,6 +3,7 @@ import { makeStyles } from "@mui/styles";
 import classNames from "classnames";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
 import LoginEmail from "../features/Authenticate/components/Login Email";
 
 import LoginPhone from "../features/Authenticate/components/LoginFormPhone";
@@ -21,6 +22,7 @@ function Header(props) {
   const classes = useStyles();
   const loginCurrent = useSelector((state) => state.user.current);
   const isLogin = !!loginCurrent.id;
+  const history = useHistory();
 
   const cartItemCount = useSelector(cartItemsCountSelector);
   const [hidden, setHidden] = React.useState(true);
@@ -38,6 +40,11 @@ function Header(props) {
     setHidden(false);
     setMode("register");
   };
+  const handleClickCart = () => {
+    if (!isLogin) handleClickRegister();
+    else history.push("/cart");
+  };
+
   const dispatch = useDispatch();
   return (
     <Box>
@@ -268,7 +275,8 @@ function Header(props) {
                 </button>
               </div>
             </div>
-            <div className={"header__cart"}>
+
+            <div className={"header__cart"} onClick={handleClickCart}>
               <span className={"header__cart__wrapper"}>
                 <img
                   className={"header__cart__icon"}
