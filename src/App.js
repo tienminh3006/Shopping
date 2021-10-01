@@ -6,7 +6,8 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import NotFound from "./components/features/NotFound";
 import ProductFeature from "./components/features/Products";
-import SliderFeature from "./components/Slider";
+import Home from "./components/features/Products/component/Home";
+import Slider from "./components/Slider/component/SliderBar";
 
 function App() {
   return (
@@ -14,10 +15,10 @@ function App() {
       {/* <Box */}
       <Box>
         <Header />
-        <SliderFeature />
+        <Slider />
         <Switch>
           <Redirect from="/home" to="/" />
-          <Route path="/" component={ProductFeature} exact />
+          <Route path="/" component={Home} exact />
           <Route path="/products" component={ProductFeature}></Route>
           {/* <Route path="/products" component={ProductFeature}></Route> */}
           <Route path="/cart" component={CartFeature}></Route>

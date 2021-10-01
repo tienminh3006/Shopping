@@ -6,7 +6,7 @@ ProductDescription.prototypes = { product: PropTypes.object };
 function ProductDescription({ product = {} }) {
   const safeDesciption = DOMPurify.sanitize(product.description);
   return (
-    <div style={{ backgroundColor: "#fff", padding: "28px" }}>
+    <div style={{ backgroundColor: "#fff", padding: "32px" }}>
       <span dangerouslySetInnerHTML={{ __html: safeDesciption }} />
     </div>
   );
