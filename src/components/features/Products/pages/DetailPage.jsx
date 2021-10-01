@@ -12,8 +12,8 @@ import ProductMenu from "../component/ProductMenu";
 import ProductAdditional from "../component/ProductAdditional";
 import ProductReviews from "../component/ProductReviews";
 import LinearProgress from "@mui/material/LinearProgress";
-import { useDispatch } from "react-redux";
-import { addToCard } from "../../Cart/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCard, showMiniCart } from "../../Cart/cartSlice";
 
 DetailPage.propTypes = {};
 const useStyles = makeStyles((theme) => ({
@@ -32,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
 
 function DetailPage(props) {
   const dispatch = useDispatch();
-
   const classes = useStyles();
   const {
     url,
@@ -48,11 +47,15 @@ function DetailPage(props) {
     );
   }
   const handleAddToCardSubmit = (formValue) => {
+    // console.log(state);
+
     const action = addToCard({
       id: product.id,
       product,
       quantity: formValue.quantity,
     });
+    
+    dispatch(showMiniCart());
     // console.log(action);
     // console.log(formValue);
     dispatch(action);

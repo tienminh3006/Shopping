@@ -81,46 +81,58 @@ export default class Banner extends Component {
                 Next
               </button> */}
                 <div>
-                  <img
-                    src="https://salt.tikicdn.com/cache/w1080/ts/banner/57/93/e7/d70c4cb624b736d188c3c50c5175cdb8.png"
-                    style={{ width: "824px", height: "274px" }}
-                    alt="banner"
-                  />
+                  <a href="/">
+                    <img
+                      src="https://salt.tikicdn.com/cache/w1080/ts/banner/57/93/e7/d70c4cb624b736d188c3c50c5175cdb8.png"
+                      style={{ width: "824px", height: "274px" }}
+                      alt="banner"
+                    />
+                  </a>
                 </div>
                 <div>
-                  <img
-                    src="https://salt.tikicdn.com/cache/w1080/ts/banner/57/93/e7/d70c4cb624b736d188c3c50c5175cdb8.png"
-                    style={{ width: "824px", height: "274px" }}
-                    alt="banner"
-                  />
+                  <a href="/">
+                    <img
+                      src="https://salt.tikicdn.com/cache/w1080/ts/banner/57/93/e7/d70c4cb624b736d188c3c50c5175cdb8.png"
+                      style={{ width: "824px", height: "274px" }}
+                      alt="banner"
+                    />
+                  </a>
                 </div>
                 <div>
-                  <img
-                    src="https://salt.tikicdn.com/cache/w1080/ts/banner/57/93/e7/d70c4cb624b736d188c3c50c5175cdb8.png"
-                    style={{ width: "824px", height: "274px" }}
-                    alt="banner"
-                  />
+                  <a href="/">
+                    <img
+                      src="https://salt.tikicdn.com/cache/w1080/ts/banner/57/93/e7/d70c4cb624b736d188c3c50c5175cdb8.png"
+                      style={{ width: "824px", height: "274px" }}
+                      alt="banner"
+                    />
+                  </a>
                 </div>
                 <div>
-                  <img
-                    src="https://salt.tikicdn.com/cache/w1080/ts/banner/57/93/e7/d70c4cb624b736d188c3c50c5175cdb8.png"
-                    style={{ width: "824px", height: "274px" }}
-                    alt="banner"
-                  />
+                  <a href="/">
+                    <img
+                      src="https://salt.tikicdn.com/cache/w1080/ts/banner/57/93/e7/d70c4cb624b736d188c3c50c5175cdb8.png"
+                      style={{ width: "824px", height: "274px" }}
+                      alt="banner"
+                    />
+                  </a>
                 </div>
                 <div>
-                  <img
-                    src="https://salt.tikicdn.com/cache/w1080/ts/banner/57/93/e7/d70c4cb624b736d188c3c50c5175cdb8.png"
-                    style={{ width: "824px", height: "274px" }}
-                    alt="banner"
-                  />
+                  <a href="/">
+                    <img
+                      src="https://salt.tikicdn.com/cache/w1080/ts/banner/57/93/e7/d70c4cb624b736d188c3c50c5175cdb8.png"
+                      style={{ width: "824px", height: "274px" }}
+                      alt="banner"
+                    />
+                  </a>
                 </div>
                 <div>
-                  <img
-                    src="https://salt.tikicdn.com/cache/w1080/ts/banner/57/93/e7/d70c4cb624b736d188c3c50c5175cdb8.png"
-                    style={{ width: "824px", height: "274px" }}
-                    alt="banner"
-                  />
+                  <a href="/">
+                    <img
+                      src="https://salt.tikicdn.com/cache/w1080/ts/banner/57/93/e7/d70c4cb624b736d188c3c50c5175cdb8.png"
+                      style={{ width: "824px", height: "274px" }}
+                      alt="banner"
+                    />
+                  </a>
                 </div>
               </Slider>
             </div>

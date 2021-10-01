@@ -1,0 +1,17 @@
+.cart__product {
+  &__list {
+    padding-left: 0;
+  }
+  &__item {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__thumbnail {
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+  }
+  &__info {
+    display: flex;
+  }
+}

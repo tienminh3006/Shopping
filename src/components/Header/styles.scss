@@ -238,6 +238,7 @@
     color: #fff;
   }
   &__cart {
+    position: relative;
     &:hover {
       cursor: pointer;
     }
@@ -376,4 +377,66 @@
 }
 .hidden {
   display: none;
+}
+.mini-cart {
+  &:hover {
+    cursor: default;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    right: 15px;
+    border-width: 8px;
+    border-style: solid;
+    border-color: transparent transparent rgb(255, 255, 255);
+    border-image: initial;
+  }
+  position: absolute;
+  bottom: -15px;
+  right: 0px;
+  padding: 16px;
+  transform: translateY(100%);
+  background-color: rgb(255, 255, 255);
+  border-radius: 6px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.295);
+  z-index: 2;
+  &__status {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    margin: 0px;
+    color: rgb(51, 51, 51);
+    font-size: 13px;
+    white-space: nowrap;
+    svg {
+      margin-right: 4px;
+      color: rgb(76, 175, 80);
+      font-size: 19px;
+    }
+  }
+  &__view {
+    text-decoration: none;
+    display: block;
+    margin-top: 16px;
+    padding: 10px 0px;
+    width: 240px;
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    background-color: rgb(255, 57, 69);
+    border-radius: 4px;
+  }
+  &__close {
+    cursor: pointer;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    padding: 3px 5px;
+    color: rgb(70, 70, 70);
+    font-size: 11px;
+    border: none;
+  }
 }
