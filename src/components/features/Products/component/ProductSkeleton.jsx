@@ -9,6 +9,7 @@ ProductSkeleton.defaultProps = {
   length: 12,
 };
 function ProductSkeleton(length) {
+  console.log(length);
   return (
     <div>
       <Box>

@@ -5,6 +5,10 @@ import DOMPurify from "dompurify";
 ProductDescription.prototypes = { product: PropTypes.object };
 function ProductDescription({ product = {} }) {
   const safeDesciption = DOMPurify.sanitize(product.description);
-  return <span dangerouslySetInnerHTML={{ __html: safeDesciption }} />;
+  return (
+    <div style={{ backgroundColor: "#fff", padding: "28px" }}>
+      <span dangerouslySetInnerHTML={{ __html: safeDesciption }} />
+    </div>
+  );
 }
 export default ProductDescription;

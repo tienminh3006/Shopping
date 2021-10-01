@@ -6,7 +6,7 @@ import categoryApi from "../../../../../api/categoryApi";
 FilterByCategory.propTypes = {};
 const useStyle = makeStyles((theme) => ({
   root: {
-    paddingTop: "20px",
+    paddingTop: "15px",
   },
   menu: {
     listStyle: "none",
