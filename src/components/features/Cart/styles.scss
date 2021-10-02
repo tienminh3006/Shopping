@@ -47,6 +47,11 @@
       height: 24px;
     }
   }
+  &__delete {
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }
 .cart__notifi {
   border: none;

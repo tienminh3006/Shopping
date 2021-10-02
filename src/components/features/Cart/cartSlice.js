@@ -32,12 +32,10 @@ const cartSlice = createSlice({
       state.cartItems[index].quantity = quantity - 1;
     },
     setQuantity(state, action) {
-      console.log(action.payload);
       const { id, quantity } = action.payload;
+      console.log(id, quantity);
       const index = state.cartItems.findIndex((x) => x.id === id);
-      if (index >= 0) {
-        state.cartItems[index].quantity = quantity;
-      }
+      state.cartItems[index].quantity = quantity;
     },
     removeFromCart(state, action) {
       const idToRemove = action.payload;

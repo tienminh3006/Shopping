@@ -1,24 +1,44 @@
 import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
+
 import "./styles.scss";
 import { cartTotaltSelector } from "./selector";
+import * as yup from "yup";
+
 import {
-  removeFromCart,
   setQuantity,
+  removeFromCart,
   increaseQuantity,
   decreaseQuantity,
 } from "./cartSlice";
+import { Link } from "react-router-dom";
+import QuantityField from "../../form-controls/QuantityField";
+import { yupResolver } from "@hookform/resolvers/yup";
 CartFeature.propTypes = {};
 
 function CartFeature(props) {
+  const schema = yup.object().shape({
+    quantity: yup
+      .number()
+      .min(1, "Số lượng phải lớn hơn 1")
+      .required("Vui lòng nhập số lượng")
+      .typeError("Vui lòng nhập số lượng"),
+  });
+  const form = useForm({
+    defaultValues: {
+      quantity: 1,
+    },
+    resolver: yupResolver(schema),
+  });
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
+  const [idItem, setIditem] = useState("");
   const stateCart = useSelector((state) => {
     return state.cart;
   });
   localStorage.setItem("cart", JSON.stringify(stateCart.cartItems));
-  console.log(stateCart.cartItems);
   const formatPrice = function (number) {
     return new Intl.NumberFormat("vi-VN", {
       style: "currency",
@@ -31,29 +51,55 @@ function CartFeature(props) {
   };
   const handleIncreaseQuantity = (e, id, quantity) => {
     dispatch(increaseQuantity({ id, quantity }));
-    // console.log(stateCart.cartItems);
-    // console.log(e.target);
     const quantityEl = e.target.closest(".cart__product__quantity");
-    // const index = stateCart.cartItems.findIndex((x) => x.id === id);
     quantityEl.querySelector(".cart__product__input").value = quantity + 1;
-    console.log(quantityEl.querySelector(".cart__product__input").value);
+    // console.log(quantityEl.querySelector(".cart__product__input").value);
   };
+
   const handleDecreaseQuantity = (e, id, quantity) => {
-    if (quantity < 1) return;
-    else {
+    if (quantity === 1) {
+      setIditem(id);
+      setShow(true);
+    } else {
       dispatch(decreaseQuantity({ id, quantity }));
       const quantityEl = e.target.closest(".cart__product__quantity");
       quantityEl.querySelector(".cart__product__input").value = quantity - 1;
     }
   };
+  const handleBlurInput = (e, id) => {
+    const quantity = +e.target.value;
+    Number.isFinite(quantity);
+    if (quantity <= 0 || !Number.isFinite(quantity))
+      alert("Vui lòng nhập số lượng lớn hơn 1");
+    else dispatch(setQuantity({ id, quantity }));
+  };
+  const handleClickCancel = () => {
+    setShow(false);
+  };
+  const handleClickDelete = (e) => {
+    dispatch(removeFromCart(idItem));
+    setShow(false);
+  };
   return (
     <Fragment>
       {show ? (
         <div className="cart__notifi">
-          <div class="cart__notifi__content">Bạn muốn xoá sản phẩm này?</div>
-          <div class="cart__notifi__control">
-            <button class="cart__notifi__btn cart__notifi-close">Không</button>
-            <button class="cart__notifi__btn cart__notifi-action">Xóa</button>
+          <div className="cart__notifi__content">
+            Bạn muốn xoá sản phẩm này?
+          </div>
+          <div className="cart__notifi__control">
+            <button
+              className="cart__notifi__btn cart__notifi-close"
+              onClick={handleClickCancel}
+            >
+              Không
+            </button>
+            <button
+              className="cart__notifi__btn cart__notifi-action"
+              onClick={(e) => handleClickDelete(e)}
+            >
+              Xóa
+            </button>
           </div>
         </div>
       ) : (
@@ -74,7 +120,7 @@ function CartFeature(props) {
                       />
                     </div>{" "}
                     <div className="col l-5">
-                      <a href={`/products/${product.id}`}>
+                      <Link to={`/products/${product.id}`}>
                         <div className="cart__product__info">
                           <img
                             className="cart__product__thumbnail"
@@ -87,7 +133,7 @@ function CartFeature(props) {
                           />
                           <p>{product.name}</p>
                         </div>
-                      </a>
+                      </Link>
                     </div>
                     <div className="col l-1">
                       <span>{formatPrice(product.salePrice)}</span>
@@ -105,7 +151,16 @@ function CartFeature(props) {
                             alt=""
                           />
                         </span>
+                        {/* <QuantityField
+                          defaultValue={quantity}
+                          className="cart__product__input"
+                          onBlur={(e) => handleBlurInput(e, id)}
+                          name="quantity"
+                          label="quantity"
+                          form={form}
+                        /> */}
                         <input
+                          onBlur={(e) => handleBlurInput(e, id)}
                           type="tel"
                           className="cart__product__input"
                           defaultValue={quantity}
@@ -125,7 +180,7 @@ function CartFeature(props) {
                     </div>
                     <div className="col l-1">
                       <span
-                        className="intended__delete"
+                        className="cart__product__delete"
                         onClick={() => handClickRemoveItem(id)}
                       >
                         <img

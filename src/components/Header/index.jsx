@@ -83,7 +83,7 @@ function Header(props) {
               <div className={"header__menu__list"}>
                 <ul>
                   <li>
-                    <a href="google.com">
+                    <a href="/">
                       <span>
                         <i className="fas fa-mobile-alt menu__list__icon"></i>
                       </span>
@@ -91,7 +91,7 @@ function Header(props) {
                     </a>
                   </li>
                   <li>
-                    <a href="google.com">
+                    <a href="/">
                       <span>
                         <i className="fas fa-camera-retro menu__list__icon"></i>
                       </span>
@@ -99,7 +99,7 @@ function Header(props) {
                     </a>
                   </li>
                   <li>
-                    <a href="google.com">
+                    <a href="/">
                       <span>
                         <i className="fas fa-headset menu__list__icon"></i>
                       </span>
@@ -107,7 +107,7 @@ function Header(props) {
                     </a>
                   </li>
                   <li>
-                    <a href="google.com">
+                    <a href="/">
                       <span>
                         <i className="fas fa-tv menu__list__icon"></i>
                       </span>
@@ -115,7 +115,7 @@ function Header(props) {
                     </a>
                   </li>
                   <li>
-                    <a href="google.com">
+                    <a href="/">
                       <span>
                         <i className="fas fa-laptop menu__list__icon"></i>
                       </span>
@@ -123,7 +123,7 @@ function Header(props) {
                     </a>
                   </li>
                   <li>
-                    <a href="google.com">
+                    <a href="/">
                       <span>
                         <i className="fas fa-utensils menu__list__icon"></i>
                       </span>
@@ -148,7 +148,7 @@ function Header(props) {
                   <div>Danh Mục Nổi Bật</div>
                 </div>
                 <div className={"search__auto__guess"}>
-                  <a href="google.com">
+                  <a href="/">
                     <div className="thumb-wrap">
                       <img
                         src="https://salt.tikicdn.com/ts/category/a6/9f/45/460fdecbbe0f81da09c7da37aa08f680.png"
@@ -157,7 +157,7 @@ function Header(props) {
                     </div>
                     <span className="title">Thực Phẩm Tươi Sống</span>
                   </a>
-                  <a href="google.com">
+                  <a href="/">
                     <div className="thumb-wrap">
                       <img
                         src="https://salt.tikicdn.com/ts/category/3c/e4/99/eeee1801c838468d94af9997ec2bbe42.png"
@@ -166,7 +166,7 @@ function Header(props) {
                     </div>
                     <span className="title">Hàng Quốc Tế</span>
                   </a>
-                  <a href="google.com">
+                  <a href="/">
                     <div className="thumb-wrap">
                       <img
                         src="https://salt.tikicdn.com/cache/280x280/ts/product/65/b4/20/5756b8b7996165d0986fcb37d6a18d9d.jpg"
@@ -175,7 +175,7 @@ function Header(props) {
                     </div>
                     <span className="title">Bộ Chuyển Đổi Khác</span>
                   </a>
-                  <a href="google.com">
+                  <a href="/">
                     <div className="thumb-wrap">
                       <img
                         src="https://salt.tikicdn.com/ts/category/75/34/29/d900f845e51e95a2c41b5b035468f959.png"
@@ -184,7 +184,7 @@ function Header(props) {
                     </div>
                     <span className="title">Thiết Bị Số - Phụ Kiện Số</span>
                   </a>
-                  <a href="google.com">
+                  <a href="/">
                     <div className="thumb-wrap">
                       <img
                         src="https://salt.tikicdn.com/ts/category/92/b5/c0/3ffdb7dbfafd5f8330783e1df20747f6.png"
@@ -195,7 +195,7 @@ function Header(props) {
                       Laptop - Máy Vi Tính - Linh kiện
                     </span>
                   </a>
-                  <a href="google.com">
+                  <a href="/">
                     <div className="thumb-wrap">
                       <img
                         src="https://salt.tikicdn.com/ts/category/13/64/43/226301adcc7660ffcf44a61bb6df99b7.png"
@@ -204,7 +204,7 @@ function Header(props) {
                     </div>
                     <span className="title">Đồ Chơi - Mẹ &#38; Bé</span>
                   </a>
-                  <a href="google.com">
+                  <a href="/">
                     <div className="thumb-wrap">
                       <img
                         src="https://salt.tikicdn.com/cache/280x280/ts/product/78/83/23/7cad758fc5e8fd666e7be6f042860535.jpg"
@@ -213,7 +213,7 @@ function Header(props) {
                     </div>
                     <span className="title">Linh kiện máy tính</span>
                   </a>
-                  <a href="google.com">
+                  <a href="/">
                     <div className="thumb-wrap">
                       <img
                         src="https://salt.tikicdn.com/cache/280x280/media/catalog/product/t/l/tl-wn781nd.jpg"
@@ -346,7 +346,7 @@ function Header(props) {
               <a href="http://www.google.com">Hải sản</a>
             </div>
 
-            <a href="google.com" className={"header__seller"}>
+            <a href="/" className={"header__seller"}>
               <img
                 src="https://frontend.tikicdn.com/_desktop-next/static/img/icon-seller.svg"
                 alt="seller"
