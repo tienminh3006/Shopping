@@ -56,12 +56,12 @@ function Header(props) {
         <div className={"grid wide"}>
           <div className={"header-with-search"}>
             <div className={"header__logo"}>
-              <a href={"/"}>
+              <Link to="/home">
                 <img
                   src="https://salt.tikicdn.com/ts/upload/ae/f5/15/2228f38cf84d1b8451bb49e2c4537081.png"
                   alt="logo"
                 />
-              </a>
+              </Link>
             </div>
             <div className={"header__menu"}>
               <img

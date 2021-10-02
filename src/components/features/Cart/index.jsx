@@ -30,24 +30,18 @@ function CartFeature(props) {
   };
   const handleIncreaseQuantity = (e, id, quantity) => {
     dispatch(increaseQuantity({ id, quantity }));
-    console.log(stateCart.cartItems);
-    console.log(e.target);
+    // console.log(stateCart.cartItems);
+    // console.log(e.target);
     const quantityEl = e.target.closest(".cart__product__quantity");
-    const index = stateCart.cartItems.findIndex((x) => x.id === id);
-    if (index > 0) {
-      console.log(stateCart.cartItems[index].quantity);
+    // const index = stateCart.cartItems.findIndex((x) => x.id === id);
       quantityEl.querySelector(".cart__product__input").value = quantity + 1;
-    }
     console.log(quantityEl.querySelector(".cart__product__input").value);
   };
   const handleDecreaseQuantity = (e, id, quantity) => {
     dispatch(decreaseQuantity({ id, quantity }));
     const quantityEl = e.target.closest(".cart__product__quantity");
-    console.log(quantityEl);
-    const index = stateCart.cartItems.findIndex((x) => x.id === id);
-    if (index > 0) {
+    // const index = stateCart.cartItems.findIndex((x) => x.id === id);
       quantityEl.querySelector(".cart__product__input").value = quantity - 1;
-    }
   };
 
   return (
