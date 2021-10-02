@@ -1,15 +1,27 @@
 .cart__product {
+  background-color: #f4f4f4;
+  padding-top: 25px;
+  &__container {
+    background-color: #fff;
+  }
+  &__checkbox {
+    text-align: center;
+  }
   &__list {
     padding-left: 0;
   }
   &__item {
     display: flex;
     justify-content: space-between;
+    height: 80px;
+    align-items: center;
+    margin-bottom: 25px;
   }
   &__thumbnail {
     width: 80px;
     height: 80px;
     display: inline-block;
+    margin-right: 10px;
   }
   &__info {
     display: flex;
