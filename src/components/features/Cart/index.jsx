@@ -34,18 +34,22 @@ function CartFeature(props) {
     // console.log(e.target);
     const quantityEl = e.target.closest(".cart__product__quantity");
     // const index = stateCart.cartItems.findIndex((x) => x.id === id);
-      quantityEl.querySelector(".cart__product__input").value = quantity + 1;
+    quantityEl.querySelector(".cart__product__input").value = quantity + 1;
     console.log(quantityEl.querySelector(".cart__product__input").value);
   };
   const handleDecreaseQuantity = (e, id, quantity) => {
-    dispatch(decreaseQuantity({ id, quantity }));
-    const quantityEl = e.target.closest(".cart__product__quantity");
-    // const index = stateCart.cartItems.findIndex((x) => x.id === id);
+    if (quantity < 1) return;
+    else {
+      dispatch(decreaseQuantity({ id, quantity }));
+      const quantityEl = e.target.closest(".cart__product__quantity");
       quantityEl.querySelector(".cart__product__input").value = quantity - 1;
+    }
   };
-
   return (
     <Fragment>
+      <div>
+        
+      </div>
       <div className="grid wide">
         <div className="row">
           <div className="col l-9">
