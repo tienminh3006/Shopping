@@ -41,10 +41,16 @@ const cartSlice = createSlice({
       const idToRemove = action.payload;
       state.cartItems = state.cartItems.filter((x) => x.id !== idToRemove);
     },
+    toggleCheckedItem(state, action) {
+      const  id  = action.payload;
+      const index = state.cartItems.findIndex((x) => x.id === id);
+      state.cartItems[index].checked = !state.cartItems[index].checked;
+    },
   },
 });
 
 export const {
+  toggleCheckedItem,
   decreaseQuantity,
   increaseQuantity,
   showMiniCart,

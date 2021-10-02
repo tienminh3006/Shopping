@@ -50,11 +50,12 @@ function DetailPage(props) {
     // console.log(state);
 
     const action = addToCard({
+      checked: false,
       id: product.id,
       product,
       quantity: formValue.quantity,
     });
-    
+    console.log(action);
     dispatch(showMiniCart());
     // console.log(action);
     // console.log(formValue);

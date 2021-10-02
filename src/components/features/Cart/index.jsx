@@ -2,16 +2,15 @@ import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
-
 import "./styles.scss";
 import { cartTotaltSelector } from "./selector";
 import * as yup from "yup";
-
 import {
   setQuantity,
   removeFromCart,
   increaseQuantity,
   decreaseQuantity,
+  toggleCheckedItem,
 } from "./cartSlice";
 import { Link } from "react-router-dom";
 import QuantityField from "../../form-controls/QuantityField";
@@ -38,6 +37,7 @@ function CartFeature(props) {
   const stateCart = useSelector((state) => {
     return state.cart;
   });
+  console.log(stateCart);
   localStorage.setItem("cart", JSON.stringify(stateCart.cartItems));
   const formatPrice = function (number) {
     return new Intl.NumberFormat("vi-VN", {
@@ -80,6 +80,9 @@ function CartFeature(props) {
     dispatch(removeFromCart(idItem));
     setShow(false);
   };
+  const handleCheckItem = (id) => {
+    dispatch(toggleCheckedItem(id));
+  };
   return (
     <Fragment>
       {show ? (
@@ -110,48 +113,51 @@ function CartFeature(props) {
           <div className="col l-9">
             <div className="cart__product">
               <ul className="cart__product__list">
-                {stateCart.cartItems.map(({ id, product, quantity }) => (
-                  <li key={product.id} className="cart__product__item row">
-                    <div className="col l-1">
-                      <input
-                        type="checkbox"
-                        name="check-item"
-                        id="check-item"
-                      />
-                    </div>{" "}
-                    <div className="col l-5">
-                      <Link to={`/products/${product.id}`}>
-                        <div className="cart__product__info">
-                          <img
-                            className="cart__product__thumbnail"
-                            src={
-                              product.thumbnail
-                                ? `https://api.ezfrontend.com${product.thumbnail?.url}`
-                                : `https://via.placeholder.com/444`
+                {stateCart.cartItems.map(
+                  ({ id, product, quantity, checked }) => (
+                    <li key={product.id} className="cart__product__item row">
+                      <div className="col l-1">
+                        <input
+                          checked={checked}
+                          onChange={() => handleCheckItem(id)}
+                          type="checkbox"
+                          name="check-item"
+                          id="check-item"
+                        />
+                      </div>{" "}
+                      <div className="col l-5">
+                        <Link to={`/products/${product.id}`}>
+                          <div className="cart__product__info">
+                            <img
+                              className="cart__product__thumbnail"
+                              src={
+                                product.thumbnail
+                                  ? `https://api.ezfrontend.com${product.thumbnail?.url}`
+                                  : `https://via.placeholder.com/444`
+                              }
+                              alt="thumbnail"
+                            />
+                            <p>{product.name}</p>
+                          </div>
+                        </Link>
+                      </div>
+                      <div className="col l-1">
+                        <span>{formatPrice(product.salePrice)}</span>
+                      </div>
+                      <div className="col l-1">
+                        <div className="cart__product__quantity">
+                          <span
+                            className="cart__product__quantity-decrease"
+                            onClick={(e) =>
+                              handleDecreaseQuantity(e, id, quantity)
                             }
-                            alt="thumbnail"
-                          />
-                          <p>{product.name}</p>
-                        </div>
-                      </Link>
-                    </div>
-                    <div className="col l-1">
-                      <span>{formatPrice(product.salePrice)}</span>
-                    </div>
-                    <div className="col l-1">
-                      <div className="cart__product__quantity">
-                        <span
-                          className="cart__product__quantity-decrease"
-                          onClick={(e) =>
-                            handleDecreaseQuantity(e, id, quantity)
-                          }
-                        >
-                          <img
-                            src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/decrease.svg"
-                            alt=""
-                          />
-                        </span>
-                        {/* <QuantityField
+                          >
+                            <img
+                              src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/decrease.svg"
+                              alt=""
+                            />
+                          </span>
+                          {/* <QuantityField
                           defaultValue={quantity}
                           className="cart__product__input"
                           onBlur={(e) => handleBlurInput(e, id)}
@@ -159,38 +165,39 @@ function CartFeature(props) {
                           label="quantity"
                           form={form}
                         /> */}
-                        <input
-                          onBlur={(e) => handleBlurInput(e, id)}
-                          type="tel"
-                          className="cart__product__input"
-                          defaultValue={quantity}
-                        ></input>
+                          <input
+                            onBlur={(e) => handleBlurInput(e, id)}
+                            type="tel"
+                            className="cart__product__input"
+                            defaultValue={quantity}
+                          ></input>
+                          <span
+                            className="cart__product__quantity-increase"
+                            onClick={(e) =>
+                              handleIncreaseQuantity(e, id, quantity)
+                            }
+                          >
+                            <img
+                              src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/increase.svg"
+                              alt="increase"
+                            />
+                          </span>
+                        </div>
+                      </div>
+                      <div className="col l-1">
                         <span
-                          className="cart__product__quantity-increase"
-                          onClick={(e) =>
-                            handleIncreaseQuantity(e, id, quantity)
-                          }
+                          className="cart__product__delete"
+                          onClick={() => handClickRemoveItem(id)}
                         >
                           <img
-                            src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/increase.svg"
-                            alt="increase"
+                            src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/trash.svg"
+                            alt="deleted"
                           />
                         </span>
                       </div>
-                    </div>
-                    <div className="col l-1">
-                      <span
-                        className="cart__product__delete"
-                        onClick={() => handClickRemoveItem(id)}
-                      >
-                        <img
-                          src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/trash.svg"
-                          alt="deleted"
-                        />
-                      </span>
-                    </div>
-                  </li>
-                ))}
+                    </li>
+                  )
+                )}
               </ul>
             </div>
           </div>

@@ -18,8 +18,10 @@ export const cartItemsCountSelector = createSelector(
 export const cartTotaltSelector = createSelector(
   cartItemsSelector,
   (cartItems) =>
-    cartItems.reduce(
-      (count, item) => count + item.product.salePrice * item.quantity,
-      0
-    )
+    cartItems
+      .filter((x) => x.checked === true)
+      .reduce(
+        (count, item) => count + item.product.salePrice * item.quantity,
+        0
+      )
 );
