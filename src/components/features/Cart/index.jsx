@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import "./styles.scss";
@@ -12,6 +12,7 @@ import {
 CartFeature.propTypes = {};
 
 function CartFeature(props) {
+  const [show, setShow] = useState(false);
   const dispatch = useDispatch();
   const stateCart = useSelector((state) => {
     return state.cart;
@@ -47,9 +48,17 @@ function CartFeature(props) {
   };
   return (
     <Fragment>
-      <div>
-        
-      </div>
+      {show ? (
+        <div className="cart__notifi">
+          <div class="cart__notifi__content">Bạn muốn xoá sản phẩm này?</div>
+          <div class="cart__notifi__control">
+            <button class="cart__notifi__btn cart__notifi-close">Không</button>
+            <button class="cart__notifi__btn cart__notifi-action">Xóa</button>
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
       <div className="grid wide">
         <div className="row">
           <div className="col l-9">
