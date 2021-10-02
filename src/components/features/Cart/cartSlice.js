@@ -21,7 +21,18 @@ const cartSlice = createSlice({
         state.cartItems.push(newItem);
       }
     },
+    increaseQuantity(state, action) {
+      const { id, quantity } = action.payload;
+      const index = state.cartItems.findIndex((x) => x.id === id);
+      state.cartItems[index].quantity = quantity + 1;
+    },
+    decreaseQuantity(state, action) {
+      const { id, quantity } = action.payload;
+      const index = state.cartItems.findIndex((x) => x.id === id);
+      state.cartItems[index].quantity = quantity - 1;
+    },
     setQuantity(state, action) {
+      console.log(action.payload);
       const { id, quantity } = action.payload;
       const index = state.cartItems.findIndex((x) => x.id === id);
       if (index >= 0) {
@@ -36,6 +47,8 @@ const cartSlice = createSlice({
 });
 
 export const {
+  decreaseQuantity,
+  increaseQuantity,
   showMiniCart,
   hideMiniCart,
   addToCard,

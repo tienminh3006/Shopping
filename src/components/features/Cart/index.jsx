@@ -3,6 +3,12 @@ import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import "./styles.scss";
 import { cartTotaltSelector } from "./selector";
+import {
+  removeFromCart,
+  setQuantity,
+  increaseQuantity,
+  decreaseQuantity,
+} from "./cartSlice";
 CartFeature.propTypes = {};
 
 function CartFeature(props) {
@@ -19,6 +25,30 @@ function CartFeature(props) {
     }).format(number);
   };
   const totalPrice = useSelector(cartTotaltSelector);
+  const handClickRemoveItem = (id) => {
+    dispatch(removeFromCart(id));
+  };
+  const handleIncreaseQuantity = (e, id, quantity) => {
+    dispatch(increaseQuantity({ id, quantity }));
+    console.log(stateCart.cartItems);
+    console.log(e.target);
+    const quantityEl = e.target.closest(".cart__product__quantity");
+    const index = stateCart.cartItems.findIndex((x) => x.id === id);
+    if (index > 0) {
+      console.log(stateCart.cartItems[index].quantity);
+      quantityEl.querySelector(".cart__product__input").value = quantity + 1;
+    }
+    console.log(quantityEl.querySelector(".cart__product__input").value);
+  };
+  const handleDecreaseQuantity = (e, id, quantity) => {
+    dispatch(decreaseQuantity({ id, quantity }));
+    const quantityEl = e.target.closest(".cart__product__quantity");
+    console.log(quantityEl);
+    const index = stateCart.cartItems.findIndex((x) => x.id === id);
+    if (index > 0) {
+      quantityEl.querySelector(".cart__product__input").value = quantity - 1;
+    }
+  };
 
   return (
     <Fragment>
@@ -28,44 +58,69 @@ function CartFeature(props) {
             <div className="cart__product">
               <ul className="cart__product__list">
                 {stateCart.cartItems.map(({ id, product, quantity }) => (
-                  <li key={product.id} className="cart__product__item">
-                    <input type="checkbox" name="check-item" id="check-item" />
-                    <a href={`/products/${product.id}`}>
-                      <div className="cart__product__info">
-                        <img
-                          className="cart__product__thumbnail"
-                          src={
-                            product.thumbnail
-                              ? `https://api.ezfrontend.com${product.thumbnail?.url}`
-                              : `https://via.placeholder.com/444`
-                          }
-                          alt="thumbnail"
-                        />
-                        <p>{product.name}</p>
-                      </div>
-                    </a>
-                    <span>{formatPrice(product.salePrice)}</span>
-                    <div>
-                      <span>
-                        <img
-                          src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/decrease.svg"
-                          alt=""
-                        />
-                      </span>
+                  <li key={product.id} className="cart__product__item row">
+                    <div className="col l-1">
                       <input
-                        type="tel"
-                        className="qty-input"
-                        defaultValue={quantity}
-                      ></input>
-                      <span className="qty-increase">
-                        <img
-                          src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/increase.svg"
-                          alt="increase"
-                        />
-                      </span>
+                        type="checkbox"
+                        name="check-item"
+                        id="check-item"
+                      />
+                    </div>{" "}
+                    <div className="col l-5">
+                      <a href={`/products/${product.id}`}>
+                        <div className="cart__product__info">
+                          <img
+                            className="cart__product__thumbnail"
+                            src={
+                              product.thumbnail
+                                ? `https://api.ezfrontend.com${product.thumbnail?.url}`
+                                : `https://via.placeholder.com/444`
+                            }
+                            alt="thumbnail"
+                          />
+                          <p>{product.name}</p>
+                        </div>
+                      </a>
                     </div>
-                    <div className="col-5">
-                      <span className="intended__delete">
+                    <div className="col l-1">
+                      <span>{formatPrice(product.salePrice)}</span>
+                    </div>
+                    <div className="col l-1">
+                      <div className="cart__product__quantity">
+                        <span
+                          className="cart__product__quantity-decrease"
+                          onClick={(e) =>
+                            handleDecreaseQuantity(e, id, quantity)
+                          }
+                        >
+                          <img
+                            src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/decrease.svg"
+                            alt=""
+                          />
+                        </span>
+                        <input
+                          type="tel"
+                          className="cart__product__input"
+                          defaultValue={quantity}
+                        ></input>
+                        <span
+                          className="cart__product__quantity-increase"
+                          onClick={(e) =>
+                            handleIncreaseQuantity(e, id, quantity)
+                          }
+                        >
+                          <img
+                            src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/increase.svg"
+                            alt="increase"
+                          />
+                        </span>
+                      </div>
+                    </div>
+                    <div className="col l-1">
+                      <span
+                        className="intended__delete"
+                        onClick={() => handClickRemoveItem(id)}
+                      >
                         <img
                           src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/trash.svg"
                           alt="deleted"
@@ -129,7 +184,9 @@ function CartFeature(props) {
                   <ul className="prices__items">
                     <li className="prices__item">
                       <span className="prices__text">Tạm tính</span>
-                      <span className="prices__value">{totalPrice}</span>
+                      <span className="prices__value">
+                        {formatPrice(totalPrice)}
+                      </span>
                     </li>
                     <li className="prices__item">
                       <span className="prices__text">Giảm giá</span>

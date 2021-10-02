@@ -281,17 +281,19 @@ function Header(props) {
             </div>
 
             <div className={"header__cart"}>
-              <span className={"header__cart__wrapper"}>
-                <img
-                  className={"header__cart__icon"}
-                  src="https://salt.tikicdn.com/ts/upload/40/44/6c/b80ad73e5e84aeb71c08e5d8d438eaa1.png"
-                  alt="cart"
-                />
-                <span className={"header__cart__quantity"}>
-                  {cartItemCount}
+              <div onClick={handleClickCart}>
+                <span className={"header__cart__wrapper"}>
+                  <img
+                    className={"header__cart__icon"}
+                    src="https://salt.tikicdn.com/ts/upload/40/44/6c/b80ad73e5e84aeb71c08e5d8d438eaa1.png"
+                    alt="cart"
+                  />
+                  <span className={"header__cart__quantity"}>
+                    {cartItemCount}
+                  </span>
                 </span>
-              </span>
-              <span className={"header__cart__title"}>Giỏ Hàng</span>
+                <span className={"header__cart__title"}>Giỏ Hàng</span>
+              </div>
               {stateCart.showMiniCart ? (
                 <div className="mini-cart">
                   <button
