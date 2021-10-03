@@ -9,8 +9,8 @@ function Footer(props) {
     <>
       <div className="footer">
         <div className="grid wide">
-          <div className="grid__row">
-            <div className="footer__content col l-2 t-3 m-6">
+          <div className="row">
+            <div className="footer__content col l-3 t-3 m-6">
               <h3 className="footer__heading">Chăm sóc khách hàng</h3>
               <ul className="footer__list">
                 <li className="footer__item">
@@ -30,7 +30,7 @@ function Footer(props) {
                 </li>
               </ul>
             </div>
-            <div className="footer__content col l-2 t-3 m-6">
+            <div className="footer__content col l-3 t-3 m-6">
               <h3 className="footer__heading">Giới thiệu</h3>
               <ul className="footer__list">
                 <li className="footer__item">
@@ -50,7 +50,7 @@ function Footer(props) {
                 </li>
               </ul>
             </div>
-            <div className="footer__content col l-2 t-3 m-6">
+            <div className="footer__content col l-3 t-3 m-6">
               <h3 className="footer__heading">Theo dõi</h3>
               <ul className="footer__list">
                 <li className="footer__item">
@@ -73,27 +73,8 @@ function Footer(props) {
                 </li>
               </ul>
             </div>
-            <div className="footer__content col l-2 t-3 m-6">
-              <h3 className="footer__heading">Danh mục</h3>
-              <ul className="footer__list">
-                <li className="footer__item">
-                  <a href="link" className="footer__item-link">
-                    Đồ điện tử
-                  </a>
-                </li>
-                <li className="footer__item">
-                  <a href="link" className="footer__item-link">
-                    Điện lạnh - Gia dụng
-                  </a>
-                </li>
-                <li className="footer__item">
-                  <a href="link" className="footer__item-link">
-                    Nội thất
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div className="footer__content col l-2 t-3 m-6">
+            
+            <div className="footer__content col l-3 t-3 m-6">
               <h3 className="footer__heading">Vào cửa hàng trên ứng dụng</h3>
               <div className="footer__list">
                 <div className="footer-download">

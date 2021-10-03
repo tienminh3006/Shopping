@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./styles.scss";
+import { Link } from "react-router-dom";
 NotFound.propTypes = {};
 
 function NotFound(props) {
@@ -146,9 +147,9 @@ function NotFound(props) {
       <p className="not__found__title">
         Trang bạn đang tìm kiếm không tồn tại!
       </p>
-      <a className="not__found__link" href="/">
+      <Link className="not__found__link" to="/">
         Tiếp tục mua sắm
-      </a>
+      </Link>
     </div>
   );
 }

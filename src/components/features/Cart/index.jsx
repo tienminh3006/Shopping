@@ -3,21 +3,30 @@ import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import "./styles.scss";
-import { cartTotaltSelector } from "./selector";
+import {
+  cartItemsCountSelector,
+  cartTotaltSelector,
+  cartTotalChecked,
+  cartTotal,
+} from "./selector";
 import * as yup from "yup";
 import {
+  removeAllItems,
   setQuantity,
   removeFromCart,
   increaseQuantity,
   decreaseQuantity,
   toggleCheckedItem,
+  uncheckAllItem,
+  checkAllItem,
 } from "./cartSlice";
 import { Link } from "react-router-dom";
-import QuantityField from "../../form-controls/QuantityField";
 import { yupResolver } from "@hookform/resolvers/yup";
+import classNames from "classnames";
 CartFeature.propTypes = {};
 
 function CartFeature(props) {
+  const totalItem = useSelector(cartItemsCountSelector);
   const schema = yup.object().shape({
     quantity: yup
       .number()
@@ -31,13 +40,15 @@ function CartFeature(props) {
     },
     resolver: yupResolver(schema),
   });
+  const [checkAll, setCheckAll] = useState(false);
   const [show, setShow] = useState(false);
+  const [removeAll, setRemoveAll] = useState(false);
   const dispatch = useDispatch();
   const [idItem, setIditem] = useState("");
   const stateCart = useSelector((state) => {
     return state.cart;
   });
-  console.log(stateCart);
+  // console.log(stateCart.cartItems);
   localStorage.setItem("cart", JSON.stringify(stateCart.cartItems));
   const formatPrice = function (number) {
     return new Intl.NumberFormat("vi-VN", {
@@ -45,7 +56,9 @@ function CartFeature(props) {
       currency: "VND",
     }).format(number);
   };
+  const itemsChecked = useSelector(cartTotal);
   const totalPrice = useSelector(cartTotaltSelector);
+  const totalItems = useSelector(cartTotalChecked);
   const handClickRemoveItem = (id) => {
     dispatch(removeFromCart(id));
   };
@@ -53,7 +66,6 @@ function CartFeature(props) {
     dispatch(increaseQuantity({ id, quantity }));
     const quantityEl = e.target.closest(".cart__product__quantity");
     quantityEl.querySelector(".cart__product__input").value = quantity + 1;
-    // console.log(quantityEl.querySelector(".cart__product__input").value);
   };
 
   const handleDecreaseQuantity = (e, id, quantity) => {
@@ -73,74 +85,124 @@ function CartFeature(props) {
       alert("Vui lòng nhập số lượng lớn hơn 1");
     else dispatch(setQuantity({ id, quantity }));
   };
+
+  //Notification delete item
   const handleClickCancel = () => {
     setShow(false);
+    setRemoveAll(false);
   };
   const handleClickDelete = (e) => {
-    dispatch(removeFromCart(idItem));
+    if (removeAll) {
+      dispatch(removeAllItems());
+      setRemoveAll(false);
+    } else {
+      dispatch(removeFromCart(idItem));
+    }
     setShow(false);
+  };
+  const handleClickRemoveAll = () => {
+    setRemoveAll(true);
+    setShow(true);
   };
   const handleCheckItem = (id) => {
     dispatch(toggleCheckedItem(id));
   };
+  const handleClickCheckAll = () => {
+    if (!checkAll) {
+      dispatch(checkAllItem());
+      setCheckAll(true);
+    } else {
+      dispatch(uncheckAllItem());
+      setCheckAll(false);
+    }
+  };
   return (
     <Fragment>
-      <div className="cart__product">
-        {show ? (
-          <div className="cart__notifi">
-            <div className="cart__notifi__content">
-              Bạn muốn xoá sản phẩm này?
+      {totalItem ? (
+        <div className="cart__product">
+          {show ? (
+            <div className="cart__notifi">
+              <div className="cart__notifi__content">
+                {removeAll
+                  ? `Bạn muốn xoá toàn bộ sản phẩm trong giỏ hàng?`
+                  : "Bạn có muốn xóa sản phầm này?"}
+              </div>
+              <div className="cart__notifi__control">
+                <button
+                  className="cart__notifi__btn cart__notifi-close"
+                  onClick={handleClickCancel}
+                >
+                  Không
+                </button>
+                <button
+                  className="cart__notifi__btn cart__notifi-action"
+                  onClick={(e) => handleClickDelete(e)}
+                >
+                  Xóa
+                </button>
+              </div>
             </div>
-            <div className="cart__notifi__control">
-              <button
-                className="cart__notifi__btn cart__notifi-close"
-                onClick={handleClickCancel}
-              >
-                Không
-              </button>
-              <button
-                className="cart__notifi__btn cart__notifi-action"
-                onClick={(e) => handleClickDelete(e)}
-              >
-                Xóa
-              </button>
-            </div>
-          </div>
-        ) : (
-          ""
-        )}
-        <div className="grid wide">
-          <div className="row">
-            <div className="col l-9">
+          ) : (
+            ""
+          )}
+          <div className="grid wide">
+            <div className="row">
               <div className="cart__product__container">
                 <ul className="cart__product__list">
+                  <li className="cart__product__title">
+                    <div className="col" onClick={() => handleClickCheckAll()}>
+                      <input type="checkbox" />
+                    </div>
+                    <label className="col l-4">
+                      <span className="label">
+                        Tất cả ({totalItems} sản phẩm)
+                      </span>
+                    </label>
+                    <div className="col l-1">Đơn giá</div>
+                    <div className="col l-1">Số lượng</div>
+                    <div className="col l-1">Thành tiền</div>
+                    <div className="col">
+                      <span
+                        className="productsV2__remove-all"
+                        onClick={handleClickRemoveAll}
+                      >
+                        <img
+                          src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/trash.svg"
+                          alt="deleted"
+                        />
+                      </span>
+                    </div>
+                  </li>
                   {stateCart.cartItems.map(
                     ({ id, product, quantity, checked }) => (
-                      <li key={product.id} className="cart__product__item row">
-                        <div className="col l-1 cart__product__checkbox">
-                          <input
-                            checked={checked}
-                            onChange={() => handleCheckItem(id)}
-                            type="checkbox"
-                            name="check-item"
-                            id="check-item"
-                          />
-                        </div>{" "}
+                      <li key={product.id} className="cart__product__item">
                         <div className="col l-5">
-                          <Link to={`/products/${product.id}`}>
-                            <div className="cart__product__info">
-                              <img
-                                className="cart__product__thumbnail"
-                                src={
-                                  product.thumbnail
-                                    ? `https://api.ezfrontend.com${product.thumbnail?.url}`
-                                    : `https://via.placeholder.com/444`
-                                }
-                                alt="thumbnail"
-                              />
-                              <p>{product.name}</p>
-                            </div>
-                          </Link>
+                          <div className="cart__product__info">
+                            <input
+                              checked={checked}
+                              onChange={() => handleCheckItem(id)}
+                              type="checkbox"
+                              name="check-item"
+                              id="check-item"
+                            />
+                            <Link
+                              to={`/products/${product.id}`}
+                              className="cart__product__link"
+                            >
+                              <div className="cart__product__detail">
+                                <img
+                                  className="cart__product__thumbnail"
+                                  src={
+                                    product.thumbnail
+                                      ? `https://api.ezfrontend.com${product.thumbnail?.url}`
+                                      : `https://via.placeholder.com/444`
+                                  }
+                                  alt="thumbnail"
+                                />
+                                <p>{product.name}</p>
+                              </div>
+                            </Link>
+                          </div>
                         </div>
                         <div className="col l-1">
                           <span>{formatPrice(product.salePrice)}</span>
@@ -158,14 +220,6 @@ function CartFeature(props) {
                                 alt=""
                               />
                             </span>
-                            {/* <QuantityField
-                          defaultValue={quantity}
-                          className="cart__product__input"
-                          onBlur={(e) => handleBlurInput(e, id)}
-                          name="quantity"
-                          label="quantity"
-                          form={form}
-                        /> */}
                             <input
                               onBlur={(e) => handleBlurInput(e, id)}
                               type="tel"
@@ -186,6 +240,11 @@ function CartFeature(props) {
                           </div>
                         </div>
                         <div className="col l-1">
+                          <span className="cart__price">
+                            {formatPrice(product.salePrice)}
+                          </span>
+                        </div>
+                        <div className="col">
                           <span
                             className="cart__product__delete"
                             onClick={() => handClickRemoveItem(id)}
@@ -201,89 +260,97 @@ function CartFeature(props) {
                   )}
                 </ul>
               </div>
-            </div>
-            <div className="col l-3">
-              <div className="cart-total-prices__inner">
-                <div className="styles__StyledShippingAddress-sc-1sjj51k-0 juqUnC">
-                  <p className="heading">
-                    <span className="text">Giao tới</span>
-                    <span
-                      data-view-id="cart_shipping_location.change"
-                      className="link"
-                    >
-                      Thay đổi
-                    </span>
+              <div className="cart-info__container">
+                <div className="cart-info__user">
+                  <p className="cart-info__user-heading">
+                    <span className="cart-info__user-text">Giao tới</span>
+                    <span className="cart-info__user-link">Thay đổi</span>
                   </p>
-                  <p className="title">
-                    <b className="name">Phạm Tiến Minh</b>
-                    <b className="phone">0375783239</b>
+                  <p className="cart-info__user-info">
+                    <b className="cart-info__user-name">Phạm Tiến Minh</b>
+                    <b className="cart-info__user-phone">0375783239</b>
                   </p>
-                  <p className="address">
+                  <p className="cart-info__user-address">
                     Mediamart Mỹ Đình, 18, Phạm Hùng, Phường Mỹ Đình 1, Quận Nam
                     Từ Liêm, Hà Nội
                   </p>
                 </div>
-                <div className="styles__StyledWrapCoupons-sc-11gpuej-0 hOvmKB">
-                  <div className="styles__StyledCouponBox-sc-1ibe03g-0 jmylnB">
-                    <div className="title-usage">
-                      <p className="coupon-title">Tiki khuyến mãi</p>
-                      <p className="max-usage">
-                        Có thể chọn 2
-                        <img
-                          className="max-usage__info"
-                          src="https://frontend.tikicdn.com/_desktop-next/static/img/mycoupon/icons-info-gray.svg"
-                          alt="info"
-                        />
-                      </p>
-                    </div>
-                    <div className="eligible_coupon_list"></div>
-                    <div
-                      data-view-id="platform_coupon.cart_coupon_view.all"
-                      className="show-more"
-                    >
+
+                <div className="cart-info__coupon">
+                  <div className="cart-info__coupon-header">
+                    <p className="coupon-title">Tiki khuyến mãi</p>
+                    <p className="cart-info__coupon-usage">
+                      Có thể chọn 2
                       <img
-                        src="https://frontend.tikicdn.com/_desktop-next/static/img/mycoupon/coupon_icon.svg"
-                        alt="cart-ticket"
+                        className="cart-info__coupon-img"
+                        src="https://frontend.tikicdn.com/_desktop-next/static/img/mycoupon/icons-info-gray.svg"
+                        alt="info"
                       />
-                      <span>Chọn hoặc nhập Khuyến mãi </span>
-                    </div>
+                    </p>
+                  </div>
+                  <div className="cart-info__coupon-show">
+                    <img
+                      src="https://frontend.tikicdn.com/_desktop-next/static/img/mycoupon/coupon_icon.svg"
+                      alt="cart-ticket"
+                    />
+                    <span className="cart-info__user-link">
+                      Chọn hoặc nhập Khuyến mãi
+                    </span>
                   </div>
                 </div>
-                <div className="styles__StyledCartPrices-sc-1op1gws-0 cdzcxd">
-                  <div className="prices">
-                    <ul className="prices__items">
-                      <li className="prices__item">
+
+                <div className="cart-info__price">
+                  <div>
+                    <ul className="cart-info__price__list">
+                      <li className="cart-info__price__item">
                         <span className="prices__text">Tạm tính</span>
                         <span className="prices__value">
                           {formatPrice(totalPrice)}
                         </span>
                       </li>
-                      <li className="prices__item">
+                      <li className="cart-info__price__item">
                         <span className="prices__text">Giảm giá</span>
-                        <span className="prices__value">0đ</span>
+                        <span className="prices__value">0 đ</span>
                       </li>
                     </ul>
-                    <div className="prices__total">
-                      <span className="prices__text">Tổng cộng</span>
-                      <div className="prices__content">
-                        <div className="prices__value prices__value--empty">
-                          Vui lòng chọn sản phẩm
-                        </div>
-                        <span className="prices__value--noted">
-                          (Đã bao gồm VAT nếu có)
-                        </span>
+                  </div>
+                  <div className="cart-info__price__total">
+                    <span className="prices__text">Tổng cộng</span>
+                    <div className="cart-info__price__content">
+                      <div className="cart__price">
+                        {totalPrice
+                          ? formatPrice(totalPrice)
+                          : "Vui lòng chọn sản phẩm"}
                       </div>
+                      <span className="cart__price-noted">
+                        (Đã bao gồm VAT nếu có)
+                      </span>
                     </div>
                   </div>
                 </div>
-                <button type="button" className="cart__submit">
-                  Mua Hàng (0)
+                <button type="button" className="cart-info__price__submit">
+                  Mua Hàng ({itemsChecked})
                 </button>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      ) : (
+        <div className={"not__found"}>
+          <img
+            src="https://salt.tikicdn.com/desktop/img/mascot@2x.png"
+            alt=""
+            class="empty__img"
+          />
+          <p className="not__found__title">
+            Giỏ hàng của bạn chưa có sản phẩm nào!
+          </p>
+          <Link className="not__found__link" to="/">
+            Hãy tiếp tục mua sắm
+          </Link>
+        </div>
+      )}
+      <div className={classNames("overlay", { hidden: show === false })}></div>
     </Fragment>
   );
 }

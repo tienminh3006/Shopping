@@ -365,16 +365,16 @@
     }
   }
 }
-.overlay {
-  content: "";
-  position: absolute;
-  width: 100vh;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.219);
-  top: 0;
-  left: 0;
-  bottom: 0;
-}
+// .overlay {
+//   content: "";
+//   position: absolute;
+//   width: 100vh;
+//   height: 100vh;
+//   background-color: rgba(0, 0, 0, 0.219);
+//   top: 0;
+//   left: 0;
+//   bottom: 0;
+// }
 .hidden {
   display: none;
 }

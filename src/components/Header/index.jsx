@@ -415,8 +415,6 @@ function Header(props) {
           />
         </button>
       </div>
-      {/* </Dialog> */}
-      {/* <div className="overlay"></div> */}
     </Box>
   );
 }

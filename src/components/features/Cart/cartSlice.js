@@ -41,15 +41,28 @@ const cartSlice = createSlice({
       const idToRemove = action.payload;
       state.cartItems = state.cartItems.filter((x) => x.id !== idToRemove);
     },
+    removeAllItems(state, action) {
+      state.cartItems = [];
+    },
     toggleCheckedItem(state, action) {
-      const  id  = action.payload;
+      const id = action.payload;
       const index = state.cartItems.findIndex((x) => x.id === id);
       state.cartItems[index].checked = !state.cartItems[index].checked;
+    },
+    checkAllItem(state, action) {
+      state.cartItems.map((item) => (item.checked = true));
+    },
+    uncheckAllItem(state, action) {
+      state.cartItems.map((item) => (item.checked = false));
     },
   },
 });
 
 export const {
+  removeAllItems,
+
+  uncheckAllItem,
+  checkAllItem,
   toggleCheckedItem,
   decreaseQuantity,
   increaseQuantity,

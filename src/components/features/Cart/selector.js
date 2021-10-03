@@ -25,3 +25,11 @@ export const cartTotaltSelector = createSelector(
         0
       )
 );
+export const cartTotalChecked = createSelector(
+  cartItemsSelector,
+  (cartItems) => cartItems.length
+);
+export const cartTotal = createSelector(
+  cartItemsSelector,
+  (cartItems) => cartItems.filter((x) => x.checked === true).length
+);
