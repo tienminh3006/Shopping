@@ -150,8 +150,14 @@ function CartFeature(props) {
               <div className="cart__product__container">
                 <ul className="cart__product__list">
                   <li className="cart__product__title">
-                    <div className="" onClick={() => handleClickCheckAll()}>
-                      <input type="checkbox" className='cart__product__checkbox'/>
+                    <div
+                      onClick={() => handleClickCheckAll()}
+                      className="cart__product__checkbox"
+                    >
+                      <input
+                        type="checkbox"
+                        className="cart__product__checkbox-btn"
+                      />
                     </div>
                     <label className="col l-4">
                       <span className="label">

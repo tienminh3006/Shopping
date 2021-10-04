@@ -6,8 +6,12 @@
     flex: 0 0 70%;
   }
   &__checkbox {
-    text-align: center;
-    margin: 0 15px;
+    margin-left: 15px;
+    display: flex;
+    &-btn {
+      margin: 0;
+      cursor: pointer;
+    }
   }
   &__list {
     padding-left: 0;
@@ -50,6 +54,9 @@
   &__info {
     display: flex;
     align-items: center;
+    input {
+      cursor: pointer;
+    }
   }
   &__detail {
     display: flex;
@@ -254,4 +261,7 @@
 .cart__price-noted {
   font-size: 13px;
   float: right;
+}
+.products__remove-all {
+  cursor: pointer;
 }
