@@ -61,7 +61,6 @@ function Listpage(props) {
       flex: "0 0 23.5%",
       maxWidth: "23.5%",
       textAlign: "center",
-      paddingBottom: "18px",
     },
     right: {
       // padding: "0 20px",
@@ -76,6 +75,7 @@ function Listpage(props) {
       justifyContent: "center",
       marginTop: "20px",
       paddingBottom: "20px",
+      marginBottom: "20px",
     },
     filter: {
       paddingLeft: "20px",

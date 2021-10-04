@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: "10px",
     // padding: "20px",
+    paddingBottom: "20px",
   },
   range: {
     textAlign: "center",
@@ -25,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
   service: {
     fontSize: "5px",
+    paddingBottom: "20px",
   },
 }));
 function FilterByService(props) {
