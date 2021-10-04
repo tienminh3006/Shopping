@@ -14,8 +14,6 @@ const useStyles = makeStyles((theme) => ({
   originalPrice: {
     textDecoration: "line-through",
   },
-  promotionPercent: {},
-  priceBox: {},
   salePrice: {
     marginTop: "5px",
     fontSize: "20px",

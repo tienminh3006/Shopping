@@ -9,6 +9,7 @@ const useStyle = makeStyles((theme) => ({
     paddingTop: "15px",
   },
   menu: {
+    paddingLeft: "0",
     listStyle: "none",
     "&> li": {
       margin: "5px",

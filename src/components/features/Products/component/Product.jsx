@@ -23,7 +23,7 @@ function Product({ product }) {
     <Box padding={1} onClick={handleClick}>
       {/* <Box padding={1} onClick={handleClick}> */}
       {/* <Skeleton variant="rect" width="100%" height={118} /> */}
-      <Box padding={1} minHeight="215px">
+      <Box minHeight="215px">
         <img src={productThumbnail} alt={product.name} width="100%" />
       </Box>
 

@@ -12,13 +12,19 @@ FilterByService.propTypes = {
 };
 const useStyles = makeStyles((theme) => ({
   root: {
-    padding: "20px",
+    marginTop: "10px",
+    // padding: "20px",
   },
   range: {
+    textAlign: "center",
+    paddingLeft: "20px",
     display: "flex",
     flexFlow: "row nowrap",
     alignItems: "center",
     "& > span": {},
+  },
+  service: {
+    fontSize: "5px",
   },
 }));
 function FilterByService(props) {
@@ -40,6 +46,8 @@ function FilterByService(props) {
           { value: "isFreeShip", label: "Vận chuyển miễn phí" },
         ].map((service) => (
           <FormControlLabel
+            sx={{ "& .MuiSvgIcon-root": { fontSize: 20 } }}
+            className={classes.range}
             key={service.value}
             control={<Checkbox checked={Boolean(filters[service.value])} />}
             label={service.label}
