@@ -50,12 +50,27 @@ function Listpage(props) {
   // }));
   const useStyles = makeStyles((theme) => ({
     root: {},
+    container: {
+      display: " flex",
+      flexWrap: " nowrap",
+      marginLeft: "-4px",
+      marginRight: "-4px",
+      justifyContent: "space-around",
+    },
     left: {
-      width: "250px",
+      paddingLeft: "4px",
+      paddingRight: "4px",
+      flex: "0 0 23.5%",
+      maxWidth: "23.5%",
       textAlign: "center",
+      paddingBottom: "18px",
     },
     right: {
-      flex: "1 1 0",
+      // padding: "0 20px",
+      flex: "0 0 75%",
+      maxWidth: "75%",
+      paddingLeft: "4px",
+      paddingRight: "4px",
     },
     pagination: {
       display: "flex",
@@ -63,6 +78,9 @@ function Listpage(props) {
       justifyContent: "center",
       marginTop: "20px",
       paddingBottom: "20px",
+    },
+    filter: {
+      paddingLeft: "20px",
     },
   }));
   const classes = useStyles();
@@ -133,44 +151,43 @@ function Listpage(props) {
   //   });
   // }, [filter]);
   return (
-    <Box style={{ backgroundColor: "#f4f4f4" }}>
-      <Container>
-        <Grid container spacing={1}>
-          <Grid className={classes.left}>
-            <Paper elevation={0}>
-              <ProductFilters
-                filters={queryParams}
-                onChange={handleFiltersChange}
-              ></ProductFilters>
-            </Paper>
-          </Grid>
-          <Grid className={classes.right}>
-            <Paper elevation={0}>
-              <ProductSort
-                currentSort={queryParams._sort}
-                onchange={handleSortChange}
-              ></ProductSort>
-              <FilterViewer
-                filters={queryParams}
-                onChange={setNewFilters}
-              ></FilterViewer>
-              {isLoading ? (
-                <ProductSkeleton length={12} />
-              ) : (
-                <ProductList data={productList}></ProductList>
-              )}
-              <Box className={classes.pagination}>
-                <Pagination
-                  color="primary"
-                  count={Math.ceil(pagination.total / pagination.limit)}
-                  page={pagination.page}
-                  onChange={handlePageChange}
-                ></Pagination>
-              </Box>
-            </Paper>
-          </Grid>
+    <Box className="grid wide">
+      <Grid container spacing={1} className={classes.container}>
+        <Grid className={classes.left}>
+          <Paper elevation={0}>
+            <ProductFilters
+              filters={queryParams}
+              onChange={handleFiltersChange}
+            ></ProductFilters>
+          </Paper>
         </Grid>
-      </Container>
+        <Grid className={classes.right}>
+          <Paper elevation={0}>
+            <ProductSort
+              currentSort={queryParams._sort}
+              onchange={handleSortChange}
+            ></ProductSort>
+            <FilterViewer
+              className={classes.filter}
+              filters={queryParams}
+              onChange={setNewFilters}
+            ></FilterViewer>
+            {isLoading ? (
+              <ProductSkeleton length={12} />
+            ) : (
+              <ProductList data={productList}></ProductList>
+            )}
+            <Box className={classes.pagination}>
+              <Pagination
+                color="primary"
+                count={Math.ceil(pagination.total / pagination.limit)}
+                page={pagination.page}
+                onChange={handlePageChange}
+              ></Pagination>
+            </Box>
+          </Paper>
+        </Grid>
+      </Grid>
     </Box>
   );
 }

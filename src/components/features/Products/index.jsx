@@ -19,7 +19,7 @@ function ProductFeature(props) {
   const match = useRouteMatch();
   // console.log(match.url);
   return (
-    <Box>
+    <Box style={{ backgroundColor: "#f4f4f4f4" }}>
       <Switch>
         <Route path={match.url} component={ListPage} exact></Route>
         <Route path={`${match.url}/:productId`} component={DetailPage} />

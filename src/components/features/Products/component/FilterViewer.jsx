@@ -8,9 +8,11 @@ FilterViewer.propTypes = {};
 const useStyle = makeStyles((theme) => ({
   root: {
     display: "flex",
+    alignItems: "center",
+    padding: "10px 18px 0",
     " &>li": {
       listStyle: "none",
-      margin: "20px 20px 0 0",
+      marginRight: "20px",
     },
   },
 }));
