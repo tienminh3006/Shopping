@@ -1,19 +1,18 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { Box, Container, Paper } from "@material-ui/core";
 import { Grid } from "@mui/material";
-import ProductThumbnail from "../component/ProductThumbnail";
-import useProductDetail from "../component/hooks/useProductDetail";
-import { makeStyles } from "@mui/styles";
-import ProductInfo from "../component/ProductInfo";
-import AddtoCartForm from "../component/AddtoCartForm";
-import ProductMenu from "../component/ProductMenu";
-import ProductAdditional from "../component/ProductAdditional";
-import ProductReviews from "../component/ProductReviews";
 import LinearProgress from "@mui/material/LinearProgress";
-import { useDispatch, useSelector } from "react-redux";
+import { makeStyles } from "@mui/styles";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { addToCard, showMiniCart } from "../../Cart/cartSlice";
+import AddtoCartForm from "../component/AddtoCartForm";
+import useProductDetail from "../component/hooks/useProductDetail";
+import ProductAdditional from "../component/ProductAdditional";
+import ProductInfo from "../component/ProductInfo";
+import ProductMenu from "../component/ProductMenu";
+import ProductReviews from "../component/ProductReviews";
+import ProductThumbnail from "../component/ProductThumbnail";
 
 DetailPage.propTypes = {};
 const useStyles = makeStyles((theme) => ({
