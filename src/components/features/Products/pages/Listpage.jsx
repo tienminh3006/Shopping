@@ -149,7 +149,7 @@ function Listpage(props) {
   //   });
   // }, [filter]);
   return (
-    <Box className="grid wide">
+    <Box className="grid wide" style={{ paddingLeft: "0" }}>
       <Grid container spacing={1} className={classes.container}>
         <Grid className={classes.left}>
           <Paper elevation={0}>
