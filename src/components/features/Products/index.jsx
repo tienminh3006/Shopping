@@ -1,17 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
-import {
-  Link,
-  NavLink,
-  Redirect,
-  Route,
-  Switch,
-  useRouteMatch,
-} from "react-router-dom";
-import ListPage from "../Products/pages/Listpage";
-import NotFound from "../NotFound";
-import DetailPage from "./pages/DetailPage";
 import { Box } from "@mui/material";
+import React from "react";
+import { Route, Switch, useRouteMatch } from "react-router-dom";
+import NotFound from "../NotFound";
+import ListPage from "../Products/pages/Listpage";
+import DetailPage from "./pages/DetailPage";
 
 ProductFeature.propTypes = {};
 

@@ -136,7 +136,7 @@ function CartFeature(props) {
                 </button>
                 <button
                   className="cart__notifi__btn cart__notifi-action"
-                  onClick={(e) => handleClickDelete(e)}
+                  onClick={handleClickDelete}
                 >
                   Xóa
                 </button>
@@ -151,7 +151,7 @@ function CartFeature(props) {
                 <ul className="cart__product__list">
                   <li className="cart__product__title">
                     <div
-                      onClick={() => handleClickCheckAll()}
+                      onClick={handleClickCheckAll}
                       className="cart__product__checkbox"
                     >
                       <input
@@ -169,7 +169,7 @@ function CartFeature(props) {
                     <div className="col l-1">Thành tiền</div>
                     <div className="col">
                       <span
-                        className="productsV2__remove-all"
+                        className="products__remove-all"
                         onClick={handleClickRemoveAll}
                       >
                         <img
@@ -346,7 +346,6 @@ function CartFeature(props) {
           <img
             src="https://salt.tikicdn.com/desktop/img/mascot@2x.png"
             alt=""
-            class="empty__img"
           />
           <p className="not__found__title">
             Giỏ hàng của bạn chưa có sản phẩm nào!

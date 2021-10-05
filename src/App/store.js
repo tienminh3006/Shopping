@@ -7,7 +7,7 @@ const rootReducer = {
   user: userReducer,
   cart: cartReducer,
 };
-console.log(rootReducer.cart);
+// console.log(rootReducer.cart);
 const store = configureStore({
   reducer: rootReducer,
 });
