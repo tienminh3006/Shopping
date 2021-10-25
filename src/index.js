@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import "./_grid.scss";
-import App from "./App";
+import "./styles/main.scss";
+import App from "./containers/App/App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import store from "./App/store";
+import store from "./Store/store";
 import { SnackbarProvider } from "notistack";
 
 ReactDOM.render(
