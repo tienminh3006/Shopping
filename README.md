@@ -1,27 +1,24 @@
-Folder Contructor
+## Frontend Stack
 
-├───.vscode
-├───public
-└───src
-├───@types
-├───apis
-├───App
-├───assets
-│ └───images
-├───components
-│ ├───Header
-│ └───SideNav
-├───constants
-├───guards
-├───helpers
-├───hooks
-├───layouts
-├───pages
-│ ├───Home
-│ ├───Login
-│ └───Product
-│ ├───ProductItem
-│ └───ProductList
-├───reducer
-├───routes
-└───store
+- Language: JSX
+- UI: React, Material UI
+- Form: React Hook Form
+- State management: Redux
+- Network: Axios
+- Codestyle: Prettier, ESLint
+
+## Folder Structure
+
+```
+📂src
+ ┣ 📂api
+ ┣ 📂assets
+ ┣ 📂components
+ ┣ 📂containers
+ ┣ 📂constants
+ ┣ 📂services
+ ┣ 📂store
+ ┣ 📂styles
+ ┣ 📂hooks
+ ┗ 📂utils
+```
