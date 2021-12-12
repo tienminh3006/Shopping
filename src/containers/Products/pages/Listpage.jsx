@@ -40,12 +40,6 @@ function Listpage(props) {
     total: 10,
   });
 
-  // const [filter, setFilter] = useState(() => ({
-  //   ...queryParams,
-  //   _page: Number.parseInt(queryParams._page) || 1,
-  //   _limit: Number.parseInt(queryParams._limit) || 9,
-  //   _sort: queryParams._sort || "salePrice:ASC",
-  // }));
   const useStyles = makeStyles((theme) => ({
     root: {},
     container: {
@@ -63,7 +57,6 @@ function Listpage(props) {
       textAlign: "center",
     },
     right: {
-      // padding: "0 20px",
       flex: "0 0 75%",
       maxWidth: "75%",
       paddingLeft: "4px",
@@ -97,7 +90,6 @@ function Listpage(props) {
     })();
   }, [queryParams]);
   const handlePageChange = function (e, page) {
-    // setFilter((prevFilter) => ({ ...prevFilter, _page: page }));
     const filter = {
       ...queryParams,
       _page: page,
@@ -108,7 +100,6 @@ function Listpage(props) {
     });
   };
   const handleSortChange = function (newSortValue) {
-    // setFilter((prevFilter) => ({ ...prevFilter, _sort: newSortValue }));
     const filter = {
       ...queryParams,
       _sort: newSortValue,
@@ -120,8 +111,6 @@ function Listpage(props) {
     });
   };
   const handleFiltersChange = function (newFilter) {
-    // console.log("setFilter" + newFilter);
-    // setFilter((prevFilter) => ({ ...prevFilter, ...newFilter }));
     const filter = {
       ...queryParams,
       ...newFilter,
@@ -140,12 +129,6 @@ function Listpage(props) {
     });
   };
 
-  // useEffect(() => {
-  //   history.push({
-  //     pathname: history.location.pathname,
-  //     search: queryString.stringify(filter),
-  //   });
-  // }, [filter]);
   return (
     <Box className="grid wide" style={{ paddingLeft: "0" }}>
       <Grid container spacing={1} className={classes.container}>

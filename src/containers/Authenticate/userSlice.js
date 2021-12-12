@@ -37,15 +37,6 @@ const userReducer = createSlice({
       localStorage.removeItem("access_token");
       state.current = {};
     },
-    // increase(state) {
-    //   return state + 1;
-    // },
-    // decrement(state) {
-    //   return state - 1;
-    // },
-    // incrementByAmount: (state, action) => {
-    //   state.value += action.payload;
-    // },
   },
   extraReducers: {
     [register.fulfilled]: (state, action) => {

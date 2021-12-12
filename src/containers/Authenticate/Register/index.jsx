@@ -72,7 +72,6 @@ function Register(props) {
 
   const { isSubmitting } = form.formState;
   return (
-    <div>
       <Box className="login-form">
         {isSubmitting && <LinearProgress />}
         <div className="login-form__left">
@@ -135,7 +134,6 @@ function Register(props) {
           </div>
         </div>
       </Box>
-    </div>
   );
 }
 
